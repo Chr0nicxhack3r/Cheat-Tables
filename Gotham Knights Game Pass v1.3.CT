@@ -1,0 +1,878 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>95647</ID>
+      <Description>"Activate Cheats"</Description>
+      <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+      <Color>0000FF</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{$LUA}
+memrec.Color = 0x0000FF00
+[ENABLE]
+local red = 0x0000FF
+local black = 0x000000
+local orange = 0x005AFF
+local yellow = 0x00FFFF
+if (getCEVersion() ~= 7.5) then
+   showMessage("This table is for Cheat Engine 7.5. Please update to proceed.")
+   local str,Address
+   str=inputQuery('Cheat Engine Download (Click "Cancel" to decline)', 'Link', 'https://www.cheatengine.org/downloads.php')
+   if str and str~='' then
+      ShellExecute(str,Address)
+   end
+end
+
+function MakeCheatsOrange()
+   AddressList.Pointers.Color=orange
+   AddressList.Scripts.Color=orange
+end
+
+function MakeCheatsYellow()
+   AddressList.DevInfo.Color=yellow
+end
+
+local pl = getProcessList()
+local gameName = 'Gotham Knights'
+local gameProc = 'GothamKnights.exe'
+if pl[getProcessIDFromProcessName(gameProc)] ~= nil then
+   if (readInteger(process) == nil) or (readInteger(process) ~= readInteger(gameProc)) then
+      openProcess(gameProc)
+   end
+MakeCheatsOrange()
+MakeCheatsYellow()
+AddressList.GenerateAddresses.Active=true
+else
+    memrec.Color = 0x000000FF
+    local msg = [[
+               Game was not found
+Please run the game, then activate cheats]]
+     mShowMessage('Game Not Running', msg, true, 0)
+     Script.Active = false
+     return
+end
+
+if messageDialog("Change cheat engine to black out?", mtConfirmation, mbYes, mbNo) ==mrYes then
+   getMainForm().color=black
+   getMainForm().Foundlist3.Color=black
+   getAddressList().Control[0].BackgroundColor=black
+   AddressList.CheckboxColor=red
+end
+
+[DISABLE]
+memrec.Color = 0x000000FF
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>26227</ID>
+          <Description>"GenerateAddresses"</Description>
+          <Options moAlwaysHideChildren="1" moManualExpandCollapse="1" moDeactivateChildrenAsWell="1"/>
+          <Color>0000FF</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : GothamKnights.exe
+  Version: 1.5.30.0
+  Date   : 2023-11-12
+  Author : Chr0nicxHack3r
+
+  This script does blah blah blah
+}
+{$LUA}
+memrec.Color = 0x0000FF00
+{$ASM}
+[ENABLE]
+aobscanmodule(GetLocalPlayer,GothamKnights.exe,48 8B 07 4C 8D 8D 90 01 00 00) // should be unique
+alloc(newmem,$1000,GetLocalPlayer)
+alloc(LocalPlayer,8)
+label(code,return)
+LocalPlayer:
+  dq 0
+newmem:
+  mov [LocalPlayer],rdi
+code:
+  mov rax,[rdi]
+  lea r9,[rbp+00000190]
+  jmp return
+GetLocalPlayer:
+  jmp newmem
+  nop 5
+return:
+registersymbol(GetLocalPlayer,LocalPlayer)
+[DISABLE]
+{$LUA}
+memrec.Color = 0x000000FF
+{$ASM}
+GetLocalPlayer:
+  db 48 8B 07 4C 8D 8D 90 01 00 00
+unregistersymbol(*)
+dealloc(*)
+{
+// ORIGINAL CODE - INJECTION POINT: GothamKnights.exe+46E3849
+
+GothamKnights.exe+46E3820: 44 88 74 24 58           - mov [rsp+58],r14b
+GothamKnights.exe+46E3825: 0F 57 C0                 - xorps xmm0,xmm0
+GothamKnights.exe+46E3828: 66 0F 7F 85 20 02 00 00  - movdqa [rbp+00000220],xmm0
+GothamKnights.exe+46E3830: 0F 57 C9                 - xorps xmm1,xmm1
+GothamKnights.exe+46E3833: 66 0F 7F 8D 30 02 00 00  - movdqa [rbp+00000230],xmm1
+GothamKnights.exe+46E383B: 48 85 FF                 - test rdi,rdi
+GothamKnights.exe+46E383E: 74 2A                    - je GothamKnights.exe+46E386A
+GothamKnights.exe+46E3840: 48 8B 57 70              - mov rdx,[rdi+70]
+GothamKnights.exe+46E3844: 48 85 D2                 - test rdx,rdx
+GothamKnights.exe+46E3847: 74 21                    - je GothamKnights.exe+46E386A
+// ---------- INJECTING HERE ----------
+GothamKnights.exe+46E3849: 48 8B 07                 - mov rax,[rdi]
+// ---------- DONE INJECTING  ----------
+GothamKnights.exe+46E384C: 4C 8D 8D 90 01 00 00     - lea r9,[rbp+00000190]
+GothamKnights.exe+46E3853: 48 8B 92 B8 00 00 00     - mov rdx,[rdx+000000B8]
+GothamKnights.exe+46E385A: 45 33 C0                 - xor r8d,r8d
+GothamKnights.exe+46E385D: 48 8B CF                 - mov rcx,rdi
+GothamKnights.exe+46E3860: FF 90 B8 02 00 00        - call qword ptr [rax+000002B8]
+GothamKnights.exe+46E3866: 88 44 24 58              - mov [rsp+58],al
+GothamKnights.exe+46E386A: 49 8D 8C 24 E0 00 00 00  - lea rcx,[r12+000000E0]
+GothamKnights.exe+46E3872: E8 29 CD 02 00           - call GothamKnights.exe+47105A0
+GothamKnights.exe+46E3877: 4D 8B B4 24 E0 00 00 00  - mov r14,[r12+000000E0]
+GothamKnights.exe+46E387F: 49 63 9C 24 E8 00 00 00  - movsxd  rbx,dword ptr [r12+000000E8]
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>349118</ID>
+              <Description>"LocalPlayer"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <GroupHeader>1</GroupHeader>
+              <Address>LocalPlayer</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>349119</ID>
+              <Description>"PlayerController"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <GroupHeader>1</GroupHeader>
+              <Address>[LocalPlayer]+30</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>349120</ID>
+              <Description>"Pawn"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <GroupHeader>1</GroupHeader>
+              <Address>[[LocalPlayer]+30]+2A0</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>20</ID>
+          <Description>"Pointers"</Description>
+          <Options moHideChildren="1" moManualExpandCollapse="1" moDeactivateChildrenAsWell="1"/>
+          <Color>005AFF</Color>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>349121</ID>
+              <Description>"Health"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>[[[[LocalPlayer]+30]+2A0]+628]+45C</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>349122</ID>
+              <Description>"NextCritRoll"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>[[[[LocalPlayer]+30]+2A0]+628]+460</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>349137</ID>
+              <Description>"Weapon Data"</Description>
+              <Options moAlwaysHideChildren="1" moManualExpandCollapse="1" moDeactivateChildrenAsWell="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>349123</ID>
+                  <Description>"ThrownDmgMultiplier"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>[[[[LocalPlayer]+30]+2A0]+630]+1A4</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>349138</ID>
+                  <Description>"CritChance"</Description>
+                  <Options moRecursiveSetValue="1" moAlwaysHideChildren="1" moManualExpandCollapse="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+                  <GroupHeader>1</GroupHeader>
+                  <Address/>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>349131</ID>
+                      <Description>"MeleeCritChance"</Description>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <VariableType>Float</VariableType>
+                      <Address>[[[[LocalPlayer]+30]+2A0]+630]+1B0</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>349127</ID>
+                      <Description>"RangedCritChance"</Description>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <VariableType>Float</VariableType>
+                      <Address>[[[[LocalPlayer]+30]+2A0]+630]+1D0</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>349134</ID>
+                      <Description>"PrecisionCritChance"</Description>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <VariableType>Float</VariableType>
+                      <Address>[[[[LocalPlayer]+30]+2A0]+630]+1F0</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>349139</ID>
+                  <Description>"CritDmgMultiplier"</Description>
+                  <Options moRecursiveSetValue="1" moAlwaysHideChildren="1" moManualExpandCollapse="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+                  <GroupHeader>1</GroupHeader>
+                  <Address/>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>349129</ID>
+                      <Description>"MeleeCritDmgMultiplier"</Description>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <VariableType>Float</VariableType>
+                      <Address>[[[[LocalPlayer]+30]+2A0]+630]+1B4</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>349126</ID>
+                      <Description>"RangedCritDmgMultiplier"</Description>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <VariableType>Float</VariableType>
+                      <Address>[[[[LocalPlayer]+30]+2A0]+630]+1D4</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>349135</ID>
+                      <Description>"PrecisionCritDmgMultiplier"</Description>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <VariableType>Float</VariableType>
+                      <Address>[[[[LocalPlayer]+30]+2A0]+630]+1F4</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>349140</ID>
+                  <Description>"Momentum Per Hit"</Description>
+                  <Options moRecursiveSetValue="1" moAlwaysHideChildren="1" moManualExpandCollapse="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+                  <GroupHeader>1</GroupHeader>
+                  <Address/>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>349132</ID>
+                      <Description>"MeleeMomentumGenerated"</Description>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <VariableType>Float</VariableType>
+                      <Address>[[[[LocalPlayer]+30]+2A0]+630]+1B8</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>349133</ID>
+                      <Description>"RangedMomentumGenerated"</Description>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <VariableType>Float</VariableType>
+                      <Address>[[[[LocalPlayer]+30]+2A0]+630]+1D8</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>349136</ID>
+                      <Description>"PrecisionMomentumGenerated"</Description>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <VariableType>Float</VariableType>
+                      <Address>[[[[LocalPlayer]+30]+2A0]+630]+1F8</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>349145</ID>
+              <Description>"Coords"</Description>
+              <Options moAlwaysHideChildren="1" moManualExpandCollapse="1" moDeactivateChildrenAsWell="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>349143</ID>
+                  <Description>"X Coordinate"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>[[[[LocalPlayer]+30]+2A0]+140]+134</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>349142</ID>
+                  <Description>"Y Coordinate"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>[[[[LocalPlayer]+30]+2A0]+140]+138</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>349144</ID>
+                  <Description>"Z Coordinate"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>[[[[LocalPlayer]+30]+2A0]+140]+13C</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>95648</ID>
+          <Description>"Scripts"</Description>
+          <Options moHideChildren="1" moManualExpandCollapse="1" moDeactivateChildrenAsWell="1"/>
+          <Color>005AFF</Color>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>349115</ID>
+              <Description>"InfHealth"</Description>
+              <Options moHideChildren="1" moManualExpandCollapse="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : GothamKnights.exe
+  Date   : 2023-11-04
+  Author : Chr0nicxHack3r
+
+  This script will supply you and group with unlimited health. Still not 100% effective in some boss fights.
+}
+[ENABLE]
+aobscanmodule(infHealth,GothamKnights.exe,F3 0F 11 B1 5C 04 00 00) // should be unique
+alloc(newmem,$1000,infHealth)
+alloc(healthInput,4)
+label(code,return)
+healthInput:
+  dd (float)10000.0
+newmem:
+  cmp [rax+10C],0
+  jne code
+  cmp [rax+50],0
+  jne code
+  cmp [rax+10+48],0
+  jne code
+  movss xmm6,[healthInput]
+code:
+  movss [rcx+0000045C],xmm6
+  jmp return
+infHealth:
+  jmp newmem
+  nop 3
+return:
+registersymbol(infHealth,healthInput)
+[DISABLE]
+infHealth:
+  db F3 0F 11 B1 5C 04 00 00
+unregistersymbol(*)
+dealloc(*)
+{
+// ORIGINAL CODE - INJECTION POINT: GothamKnights.exe+3EEB34B
+GothamKnights.exe+3EEB320: 0F 29 74 24 30           - movaps [rsp+30],xmm6
+GothamKnights.exe+3EEB325: 0F 2F C8                 - comiss xmm1,xmm0
+GothamKnights.exe+3EEB328: 0F 29 7C 24 20           - movaps [rsp+20],xmm7
+GothamKnights.exe+3EEB32D: 73 05                    - jae GothamKnights.exe+3EEB334
+GothamKnights.exe+3EEB32F: 0F 57 F6                 - xorps xmm6,xmm6
+GothamKnights.exe+3EEB332: EB 0C                    - jmp GothamKnights.exe+3EEB340
+GothamKnights.exe+3EEB334: F3 0F 10 B1 50 04 00 00  - movss xmm6,[rcx+00000450]
+GothamKnights.exe+3EEB33C: F3 0F 5D F1              - minss xmm6,xmm1
+GothamKnights.exe+3EEB340: F3 0F 10 B9 5C 04 00 00  - movss xmm7,[rcx+0000045C]
+GothamKnights.exe+3EEB348: 0F 2E F7                 - ucomiss xmm6,xmm7
+// ---------- INJECTING HERE ----------
+GothamKnights.exe+3EEB34B: F3 0F 11 B1 5C 04 00 00  - movss [rcx+0000045C],xmm6
+// ---------- DONE INJECTING  ----------
+GothamKnights.exe+3EEB353: 74 77                    - je GothamKnights.exe+3EEB3CC
+GothamKnights.exe+3EEB355: 0F 2E F0                 - ucomiss xmm6,xmm0
+GothamKnights.exe+3EEB358: 75 64                    - jne GothamKnights.exe+3EEB3BE
+GothamKnights.exe+3EEB35A: 80 B8 F8 00 00 00 03     - cmp byte ptr [rax+000000F8],03
+GothamKnights.exe+3EEB361: 75 5B                    - jne GothamKnights.exe+3EEB3BE
+GothamKnights.exe+3EEB363: 48 89 5C 24 50           - mov [rsp+50],rbx
+GothamKnights.exe+3EEB368: 32 DB                    - xor bl,bl
+GothamKnights.exe+3EEB36A: 48 89 74 24 58           - mov [rsp+58],rsi
+GothamKnights.exe+3EEB36F: 33 F6                    - xor esi,esi
+GothamKnights.exe+3EEB371: 84 DB                    - test bl,bl
+}
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>349147</ID>
+                  <Description>"Health Value"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>healthInput</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>95588</ID>
+              <Description>"FreeCrafting"</Description>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : GothamKnights.exe
+  Date   : 2023-11-04
+  Author : Chr0nicxHack3r
+
+  This script allows you to craft in game items without any cost.
+}
+[ENABLE]
+aobscanmodule(freeCrafting,$process,29 48 08 49 83 C0 0C)
+alloc(newmem,$1000,freeCrafting)
+label(code,return)
+newmem:
+
+code:
+  sub [rax+08],#0
+  add r8,0C
+  jmp return
+freeCrafting:
+  jmp newmem
+  nop 2
+return:
+registersymbol(freeCrafting)
+[DISABLE]
+freeCrafting:
+  db 29 48 08 49 83 C0 0C
+unregistersymbol(*)
+dealloc(*)
+{
+// ORIGINAL CODE - INJECTION POINT: GothamKnights-Win64-Shipping.exe+44DA024
+
+GothamKnights-Win64-Shipping.exe+44DA009: 74 1C           - je GothamKnights-Win64-Shipping.exe+44DA027
+GothamKnights-Win64-Shipping.exe+44DA00B: 49 8B 10        - mov rdx,[r8]
+GothamKnights-Win64-Shipping.exe+44DA00E: 66 90           - nop 2
+GothamKnights-Win64-Shipping.exe+44DA010: 48 39 10        - cmp [rax],rdx
+GothamKnights-Win64-Shipping.exe+44DA013: 74 0B           - je GothamKnights-Win64-Shipping.exe+44DA020
+GothamKnights-Win64-Shipping.exe+44DA015: 48 83 C0 0C     - add rax,0C
+GothamKnights-Win64-Shipping.exe+44DA019: 48 3B C1        - cmp rax,rcx
+GothamKnights-Win64-Shipping.exe+44DA01C: 75 F2           - jne GothamKnights-Win64-Shipping.exe+44DA010
+GothamKnights-Win64-Shipping.exe+44DA01E: EB 07           - jmp GothamKnights-Win64-Shipping.exe+44DA027
+GothamKnights-Win64-Shipping.exe+44DA020: 41 8B 48 08     - mov ecx,[r8+08]
+// ---------- INJECTING HERE ----------
+GothamKnights-Win64-Shipping.exe+44DA024: 29 48 08        - sub [rax+08],ecx
+// ---------- DONE INJECTING  ----------
+GothamKnights-Win64-Shipping.exe+44DA027: 49 83 C0 0C     - add r8,0C
+GothamKnights-Win64-Shipping.exe+44DA02B: 4D 3B C1        - cmp r8,r9
+GothamKnights-Win64-Shipping.exe+44DA02E: 75 C0           - jne GothamKnights-Win64-Shipping.exe+44D9FF0
+GothamKnights-Win64-Shipping.exe+44DA030: 48 8B 5C 24 30  - mov rbx,[rsp+30]
+GothamKnights-Win64-Shipping.exe+44DA035: B0 01           - mov al,01
+GothamKnights-Win64-Shipping.exe+44DA037: 48 83 C4 20     - add rsp,20
+GothamKnights-Win64-Shipping.exe+44DA03B: 5E              - pop rsi
+GothamKnights-Win64-Shipping.exe+44DA03C: C3              - ret 
+GothamKnights-Win64-Shipping.exe+44DA03D: CC              - int 3 
+GothamKnights-Win64-Shipping.exe+44DA03E: CC              - int 3 
+}
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>95640</ID>
+              <Description>"SetItemAmount"</Description>
+              <Options moHideChildren="1"/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : GothamKnights.exe
+  Date   : 2023-11-04
+  Author : Chr0nicxHack3r
+
+  This script when activated allows you to set the quantity of crafting supplies in inventory.
+}
+[ENABLE]
+aobscanmodule(setItems,$process,48 8B CF 8B 53 08) // should be unique
+alloc(newmem,$1000,setItems)
+label(code,itemQuantity,return)
+newmem:
+
+code:
+  mov rcx,rdi
+  push eax
+  mov eax,[itemQuantity]
+  mov [rbx+08],eax
+  pop eax
+  mov edx,[rbx+08]
+  jmp return
+itemQuantity:
+dq 0
+setItems:
+  jmp newmem
+  nop
+return:
+registersymbol(setItems,itemQuantity)
+[DISABLE]
+setItems:
+  db 48 8B CF 8B 53 08
+unregistersymbol(*)
+dealloc(*)
+{
+// ORIGINAL CODE - INJECTION POINT: GothamKnights-Win64-Shipping.exe+488ADED
+
+GothamKnights-Win64-Shipping.exe+488ADBD: E8 DE 2E 1F 00           - call GothamKnights-Win64-Shipping.exe+4A7DCA0
+GothamKnights-Win64-Shipping.exe+488ADC2: 48 8B 4F 10              - mov rcx,[rdi+10]
+GothamKnights-Win64-Shipping.exe+488ADC6: 48 83 C0 30              - add rax,30
+GothamKnights-Win64-Shipping.exe+488ADCA: 48 63 50 08              - movsxd  rdx,dword ptr [rax+08]
+GothamKnights-Win64-Shipping.exe+488ADCE: 3B 51 38                 - cmp edx,[rcx+38]
+GothamKnights-Win64-Shipping.exe+488ADD1: 0F 8F 6D FE FF FF        - jg GothamKnights-Win64-Shipping.exe+488AC44
+GothamKnights-Win64-Shipping.exe+488ADD7: 48 8B 49 30              - mov rcx,[rcx+30]
+GothamKnights-Win64-Shipping.exe+488ADDB: 48 39 04 D1              - cmp [rcx+rdx*8],rax
+GothamKnights-Win64-Shipping.exe+488ADDF: 0F 85 5F FE FF FF        - jne GothamKnights-Win64-Shipping.exe+488AC44
+GothamKnights-Win64-Shipping.exe+488ADE5: 41 C6 86 30 07 00 00 00  - mov byte ptr [r14+00000730],00
+// ---------- INJECTING HERE ----------
+GothamKnights-Win64-Shipping.exe+488ADED: 48 8B CF                 - mov rcx,rdi
+// ---------- DONE INJECTING  ----------
+GothamKnights-Win64-Shipping.exe+488ADF0: 8B 53 08                 - mov edx,[rbx+08]
+GothamKnights-Win64-Shipping.exe+488ADF3: EB 47                    - jmp GothamKnights-Win64-Shipping.exe+488AE3C
+GothamKnights-Win64-Shipping.exe+488ADF5: 49 8B 8E 88 06 00 00     - mov rcx,[r14+00000688]
+GothamKnights-Win64-Shipping.exe+488ADFC: 33 D2                    - xor edx,edx
+GothamKnights-Win64-Shipping.exe+488ADFE: 48 8B 01                 - mov rax,[rcx]
+GothamKnights-Win64-Shipping.exe+488AE01: FF 90 88 05 00 00        - call qword ptr [rax+00000588]
+GothamKnights-Win64-Shipping.exe+488AE07: 48 8B D8                 - mov rbx,rax
+GothamKnights-Win64-Shipping.exe+488AE0A: 48 85 C0                 - test rax,rax
+GothamKnights-Win64-Shipping.exe+488AE0D: 74 35                    - je GothamKnights-Win64-Shipping.exe+488AE44
+GothamKnights-Win64-Shipping.exe+488AE0F: E8 8C 2E 1F 00           - call GothamKnights-Win64-Shipping.exe+4A7DCA0
+}
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>95641</ID>
+                  <Description>"Quantity"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>itemQuantity</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>95646</ID>
+      <Description>"Terminate Cheats"</Description>
+      <Color>0000FF</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+{$LUA}
+if syntaxcheck then return end
+local al = getAddressList()
+for i = 0, al.Count - 1 do
+  if al[i].Type == vtAutoAssembler then al[i].Active = false end
+end
+local msg = [[
+Cheats have been deactiavted,
+     Hope you had a fun time!]]
+mShowMessage('Cheats Deactivated', msg, true, 0)
+Script.Active = false
+memrec.Color = 0x000000FF
+{$ASM}
+nop
+[DISABLE]
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>95649</ID>
+      <Description>"DevInfo"</Description>
+      <Options moHideChildren="1"/>
+      <Color>00FFFF</Color>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>349114</ID>
+          <Description>"Game Information"</Description>
+          <Color>FFFF00</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$LUA}
+if syntaxcheck then return end
+[ENABLE]
+local msg = [[
+Game:                     Gotham Knights
+
+Game Process:        GothamKnights.exe
+
+Version:                  6.0.21.0
+
+Platform:                 Xbox Game Pass]]
+mShowMessage('Game Information', msg, true, 0)
+memrec.Color = 0x00FFFF00
+{$ASM}
+nop
+[DISABLE]
+
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>349113</ID>
+          <Description>"Table Information"</Description>
+          <Color>FFFF00</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$LUA}
+if syntaxcheck then return end
+[ENABLE]
+local msg = [[
+Table Creator:       Chr0nicxHack3r
+
+Table Version:       1.3
+
+Cheat Engine:         7.5
+
+Blackout Mode:      True]]
+mShowMessage('Table Information', msg, true, 0)
+memrec.Color = 0x00FFFF00
+{$ASM}
+nop
+[DISABLE]
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>349112</ID>
+          <Description>"-----------------------------"</Description>
+          <Color>00FFFF</Color>
+          <GroupHeader>1</GroupHeader>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>349109</ID>
+          <Description>"Donate (PayPal)"</Description>
+          <Color>FFFF00</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$LUA}
+[ENABLE]
+local str,Address
+str=inputQuery('Donate to PayPal', 'Link', 'https://www.paypal.com/paypalme/Chr0nicxHack3r')
+if str and str~='' then
+  ShellExecute(str,Address)
+end
+memrec.Color = 0x00FFFF00
+{$ASM}
+nop
+[DISABLE]
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>349110</ID>
+          <Description>"Donate (CashApp)"</Description>
+          <Color>FFFF00</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$LUA}
+[ENABLE]
+local str,Address
+str=inputQuery('Donate to CashApp', 'Link', 'https://cash.app/Chr0nicxHack3r')
+if str and str~='' then
+  ShellExecute(str,Address)
+end
+memrec.Color = 0x00FFFF00
+{$ASM}
+nop
+[DISABLE]
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>349111</ID>
+          <Description>"Donate (Venmo)"</Description>
+          <Color>FFFF00</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$LUA}
+[ENABLE]
+local str,Address
+str=inputQuery('Donate to Venmo', 'Link', 'https://venmo.com/Chr0nicxHack3r')
+if str and str~='' then
+  ShellExecute(str,Address)
+end
+memrec.Color = 0x00FFFF00
+{$ASM}
+nop
+[DISABLE]
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>349146</ID>
+          <Description>"Discord Invite"</Description>
+          <Color>FFFF00</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$LUA}
+[ENABLE]
+local str,Address
+str=inputQuery('Discord Invite', 'Link', 'https://discord.gg/8hw4eNNUvJ')
+if str and str~='' then
+  ShellExecute(str,Address)
+end
+memrec.Color = 0x00FFFF00
+{$ASM}
+nop
+[DISABLE]
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <LuaScript>--{
+--This must be executed
+--for the table to work!
+--}
+
+local t = translate
+
+MainForm.Title = 'Chr0nicxHack3r Cheat Table'
+
+CompactModeEnabled = false
+
+function disableHeaderSorting()
+   local addressListHeader = component_getComponent(AddressList, 1)
+   setMethodProperty(addressListHeader, 'OnSectionClick', nil)
+end
+
+function disableCompactMode()
+   control_setVisible(wincontrol_getControl(MainForm, 0), true)
+   control_setVisible(wincontrol_getControl(MainForm, 3), true)
+   CompactModeEnabled = false
+end
+
+function enableCompactMode()
+   control_setVisible(wincontrol_getControl(MainForm, 0), false)
+   control_setVisible(wincontrol_getControl(MainForm, 3), false)
+   CompactModeEnabled = true
+end
+
+function toggleCompactMode()
+   if CompactModeEnabled then
+      disableCompactMode()
+   else
+      enableCompactMode()
+   end
+end
+
+function addCompactModeMenu()
+   local name = 'miCTCompactMode'
+   local miCompactMode = nil
+   for i = 1, MainForm.Menu.Items.Count - 1 do
+      if MainForm.Menu.Items[i].Name == name then
+         miCompactMode = MainForm.Menu.Items[i]
+         break
+      end
+   end
+   if miCompactMode == nil then
+      miCompactMode = createMenuItem(MainForm.Menu.Items)
+      miCompactMode.Name = name
+      miCompactMode.Caption = t('Compact Mode')
+      miCompactMode.OnClick = toggleCompactMode
+      MainForm.Menu.Items.add(miCompactMode)
+   end
+end
+
+addCompactModeMenu()
+
+AddressList.OnAutoAssemblerEdit = nil
+
+function openLink(link)
+  if type(link) == "string" and link ~= nil then
+     return shellExecute(link)
+  else
+     return nil
+  end
+end
+
+function mShowMessage(title, texttoshow, withbutton, link)
+ local myform = createForm(false)
+ myform.Caption = title
+ myform.autosize = true
+ myform.BorderStyle = 'bsDialog'
+ myform.Position = 'poScreenCenter'
+ myform.Color = 0x000000
+
+ local font = createFont(myform)
+ font.Name = 'Comic Sans MS'
+ font.Height = -15
+ font.Size = 15
+ font.CharSet = 'ANSI_CHARSET'
+ font.pitch = 'fpFixed'
+ font.Quality = 'fqCleartype'
+ font.Color = 0x8C008C
+
+ local mylabel = createLabel(myform)
+ mylabel.Caption = texttoshow
+ mylabel.OptimalFill = true
+ mylabel.font = font
+ mylabel.Align = 'alClient'
+ mylabel.left = (myform.width - mylabel.width) / 2
+ mylabel.BorderSpacing.Around = 25
+
+
+ if withbutton then
+   local mybtn = createButton(myform)
+   mybtn.height = 30
+   mybtn.left = (myform.width - mybtn.width) / 2
+   mybtn.top = myform.height - mybtn.height
+   mybtn.Align = 'alBottom'
+   mybtn.BorderSpacing.Around = 25
+   mybtn.Caption = 'Okay'
+   mybtn.OnClick = function()
+   if link == nil or link == '' then
+      myform.hide()
+      return
+   else
+       openLink(link)
+       myform.hide()
+   end
+   end
+ end
+ myform.show()
+end
+
+FunctionArray={};
+registerLuaFunctionHighlight("FunctionArray");
+
+FunctionNamesArray={};
+registerLuaFunctionHighlight("FunctionNamesArray");
+
+function AddToFunctionLoop(name,func)
+FunctionNamesArray[#FunctionNamesArray+1]=name;
+FunctionArray[#FunctionArray+1]=func;
+end
+registerLuaFunctionHighlight("AddToFunctionLoop");
+
+function RemoveFromFunctionLoop(name)
+local INDEX=-1;
+for ind=0,#FunctionNamesArray,1 do
+if FunctionNamesArray[ind]~=nil then
+if FunctionNamesArray[ind]==name then
+INDEX=ind;
+break;
+end
+end
+end
+if INDEX~=-1 then
+FunctionArray[INDEX]=nil;
+FunctionNamesArray[INDEX]=nil;
+end
+end
+registerLuaFunctionHighlight("RemoveFromFunctionLoop");
+
+function CreateFunctionLoop()
+if FunctionLoop~=nil then
+FunctionLoop.suspend();
+FunctionLoop.terminate();
+FunctionLoop=nil;
+end
+FunctionLoop=createThread(function()
+while (1) do
+if #FunctionArray&gt;0 then
+for ind=0,#FunctionArray,1 do
+if  FunctionArray[ind]~=nil then
+ FunctionArray[ind]();
+ end
+end
+end
+sleep(FunctionLoopSpeed);
+end
+end);
+FunctionLoop.Name="Main_FunctionLoop";
+end
+registerLuaFunctionHighlight("CreateFunctionLoop");
+registerLuaFunctionHighlight("FunctionLoop");
+
+FunctionLoopSpeed=50;
+registerLuaFunctionHighlight("FunctionLoopSpeed");
+
+CreateFunctionLoop();
+</LuaScript>
+</CheatTable>

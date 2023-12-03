@@ -1,0 +1,707 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>95647</ID>
+      <Description>"Activation"</Description>
+      <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+      <Color>0000FF</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{$LUA}
+AddressList.OnAutoAssemblerEdit = nil
+if syntaxcheck then return end
+memrec.Color = 0x0000FF00
+[ENABLE]
+local red = 0x0000FF
+local black = 0x000000
+local orange = 0x005AFF
+if (getCEVersion() ~= 7.5) then
+   showMessage("This table is for Cheat Engine 7.5. Please update to proceed.")
+   local str,Address
+   str=inputQuery('Cheat Engine Download (Click "Cancel" to decline)', 'Link', 'https://www.cheatengine.org/downloads.php')
+   if str and str~='' then
+      ShellExecute(str,Address)
+   end
+end
+
+function MakeCheatCatsOrange()
+   GetAddressList().Pointers.Color=orange
+   GetAddressList().Scripts.Color=orange
+end
+
+local pl = getProcessList()
+local gameName = 'Maneater'
+local gameProc = 'Maneater-Win64-Shipping.exe'
+if pl[getProcessIDFromProcessName(gameProc)] ~= nil then
+   if (readInteger(process) == nil) or (readInteger(process) ~= readInteger(gameProc)) then
+      openProcess(gameProc)
+   end
+GetAddressList().DevInfo.Color=0x00FFFF
+MakeCheatCatsOrange()
+AddressList.GetAddresses.Active = true
+else
+    memrec.Color = 0x000000FF
+    local msg = [[
+               Game was not found
+Please run the game, then activate cheats
+    ]]
+     mShowMessage('Game Not Running', msg, true, 0)
+     Script.Active = false
+     return
+end
+
+if messageDialog("Change background to black?", mtConfirmation, mbYes, mbNo) ==mrYes then
+   getMainForm().color=black
+   getMainForm().Foundlist3.Color=black
+   GetAddressList().Control[0].BackgroundColor=black
+   AddressList.CheckboxColor=red
+end
+
+local msg = [[
+            Table made by Chr0nicxHack3r
+Please enjoy the content this table has to offer
+]]
+mShowMessage('Enjoy The Table', msg, true, 0)
+
+[DISABLE]
+memrec.Color = 0x000000FF
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>26227</ID>
+          <Description>"GetAddresses"</Description>
+          <Options moHideChildren="1" moManualExpandCollapse="1" moDeactivateChildrenAsWell="1"/>
+          <Color>0000FF</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Maneater-Win64-Shipping.exe
+  Date   : 2023-11-19
+  Author : Chr0nicxHack3r
+
+  This script get's LocalPlayer address
+}
+[ENABLE]
+{$LUA}
+memrec.Color = 0x0000FF00
+{$ASM}
+aobscanmodule(GetAddresses,Maneater-Win64-Shipping.exe,48 8B 01 48 89 5C 24 20 FF 90 70) // should be unique
+alloc(newmem,$1000,GetAddresses)
+alloc(LocalPlayer,8)
+label(code,return)
+LocalPlayer:
+  dq 0
+newmem:
+  mov [LocalPlayer],rcx
+code:
+  mov rax,[rcx]
+  mov [rsp+20],rbx
+  jmp return
+GetAddresses:
+  jmp newmem
+  nop 3
+return:
+registersymbol(GetAddresses,LocalPlayer)
+[DISABLE]
+{$LUA}
+memrec.Color = 0x000000FF
+{$ASM}
+GetAddresses:
+  db 48 8B 01 48 89 5C 24 20
+unregistersymbol(*)
+dealloc(*)
+{
+// ORIGINAL CODE - INJECTION POINT: Maneater-Win64-Shipping.exe+255FE6F
+
+Maneater-Win64-Shipping.exe+255FE45: EB 02                 - jmp Maneater-Win64-Shipping.exe+255FE49
+Maneater-Win64-Shipping.exe+255FE47: 33 C0                 - xor eax,eax
+Maneater-Win64-Shipping.exe+255FE49: 48 8B 4D E8           - mov rcx,[rbp-18]
+Maneater-Win64-Shipping.exe+255FE4D: 4C 8D 8D F8 01 00 00  - lea r9,[rbp+000001F8]
+Maneater-Win64-Shipping.exe+255FE54: 8B D0                 - mov edx,eax
+Maneater-Win64-Shipping.exe+255FE56: 4C 8D 85 60 01 00 00  - lea r8,[rbp+00000160]
+Maneater-Win64-Shipping.exe+255FE5D: 89 54 24 30           - mov [rsp+30],edx
+Maneater-Win64-Shipping.exe+255FE61: 33 D2                 - xor edx,edx
+Maneater-Win64-Shipping.exe+255FE63: 48 89 54 24 28        - mov [rsp+28],rdx
+Maneater-Win64-Shipping.exe+255FE68: 48 8D 95 B0 00 00 00  - lea rdx,[rbp+000000B0]
+// ---------- INJECTING HERE ----------
+Maneater-Win64-Shipping.exe+255FE6F: 48 8B 01              - mov rax,[rcx]
+// ---------- DONE INJECTING  ----------
+Maneater-Win64-Shipping.exe+255FE72: 48 89 5C 24 20        - mov [rsp+20],rbx
+Maneater-Win64-Shipping.exe+255FE77: FF 90 70 02 00 00     - call qword ptr [rax+00000270]
+Maneater-Win64-Shipping.exe+255FE7D: 48 89 44 24 78        - mov [rsp+78],rax
+Maneater-Win64-Shipping.exe+255FE82: 48 8B C8              - mov rcx,rax
+Maneater-Win64-Shipping.exe+255FE85: 48 85 C0              - test rax,rax
+Maneater-Win64-Shipping.exe+255FE88: 0F 84 D3 04 00 00     - je Maneater-Win64-Shipping.exe+2560361
+Maneater-Win64-Shipping.exe+255FE8E: 49 63 DC              - movsxd  rbx,r12d
+Maneater-Win64-Shipping.exe+255FE91: 44 8D 63 01           - lea r12d,[rbx+01]
+Maneater-Win64-Shipping.exe+255FE95: 44 89 65 C8           - mov [rbp-38],r12d
+Maneater-Win64-Shipping.exe+255FE99: 44 3B 65 CC           - cmp r12d,[rbp-34]
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>349114</ID>
+              <Description>"LocalPlayer"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <GroupHeader>1</GroupHeader>
+              <Address>LocalPlayer</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>349115</ID>
+              <Description>"PlayerController"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <GroupHeader>1</GroupHeader>
+              <Address>[LocalPlayer]+30</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>349116</ID>
+              <Description>"Pawn"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <GroupHeader>1</GroupHeader>
+              <Address>[[LocalPlayer]+30]+250</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>349112</ID>
+          <Description>"Pointers"</Description>
+          <Options moHideChildren="1" moManualExpandCollapse="1" moDeactivateChildrenAsWell="1"/>
+          <Color>005AFF</Color>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>349126</ID>
+              <Description>"CurrentPlayerLevel"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>[[[[LocalPlayer]+30]+250]+240]+39C</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>349125</ID>
+              <Description>"TheoreticalPlayerLevel"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>[[[[LocalPlayer]+30]+250]+240]+3C0</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>349131</ID>
+              <Description>"CurrentExpAmount"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>[[[[LocalPlayer]+30]+250]+240]+398</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>349132</ID>
+              <Description>"CurrentGrowthStage"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>[[[[LocalPlayer]+30]+250]+240]+3C4</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>349127</ID>
+              <Description>"CurrentProteinReserve"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>[[[[LocalPlayer]+30]+250]+240]+388</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>349128</ID>
+              <Description>"CurrentFatReserve"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>[[[[LocalPlayer]+30]+250]+240]+38C</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>349129</ID>
+              <Description>"CurrentMineralReserve"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>[[[[LocalPlayer]+30]+250]+240]+390</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>349130</ID>
+              <Description>"CurrentMutagenReserve"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>[[[[LocalPlayer]+30]+250]+240]+394</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>349117</ID>
+              <Description>"bCanBreathOutOfWater"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Byte</VariableType>
+              <Address>[[[LocalPlayer]+30]+250]+7DD</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>349118</ID>
+              <Description>"bCanDie"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Byte</VariableType>
+              <Address>[[[LocalPlayer]+30]+250]+920</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>349119</ID>
+              <Description>"bIsIvisibleToAI"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Byte</VariableType>
+              <Address>[[[LocalPlayer]+30]+250]+AE0</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>349121</ID>
+              <Description>"bBitingVulnerableCharacter"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Byte</VariableType>
+              <Address>[[[LocalPlayer]+30]+250]+1A3C</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>349122</ID>
+              <Description>"bIgnoreDamageFromSameSpecies"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Byte</VariableType>
+              <Address>[[[LocalPlayer]+30]+250]+545</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>349123</ID>
+              <Description>"bIgnoreDamageFromHumans"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Byte</VariableType>
+              <Address>[[[LocalPlayer]+30]+250]+546</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>349120</ID>
+              <Description>"PassiveHealthRegenRate"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>[[[LocalPlayer]+30]+250]+C78</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>349124</ID>
+              <Description>"PassiveHealthRegenPctMax"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>[[[LocalPlayer]+30]+250]+C8C</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>349113</ID>
+          <Description>"Scripts"</Description>
+          <Color>005AFF</Color>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>349133</ID>
+              <Description>"Change exp on gain"</Description>
+              <Options moAlwaysHideChildren="1" moManualExpandCollapse="1" moDeactivateChildrenAsWell="1"/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : Maneater-Win64-Shipping.exe
+  Date   : 2023-11-23
+  Author : Chr0nicxHack3r
+
+  This script does blah blah blah
+}
+[ENABLE]
+aobscanmodule(ExpAmount,Maneater-Win64-Shipping.exe,66 0F 6E 87 98 03 00 00 0F) // should be unique
+alloc(newmem,$1000,ExpAmount)
+alloc(expInput,4)
+label(code,return)
+expInput:
+  dd (int)0
+newmem:
+  movss xmm0,[expInput]
+  //mov [rdi+00000398],[expInput]
+code:
+  //movd xmm0,[rdi+00000398]
+  jmp return
+ExpAmount:
+  jmp newmem
+  nop 3
+return:
+registersymbol(ExpAmount,expInput)
+[DISABLE]
+ExpAmount:
+  db 66 0F 6E 87 98 03 00 00
+unregistersymbol(*)
+dealloc(*)
+{
+// ORIGINAL CODE - INJECTION POINT: Maneater-Win64-Shipping.exe+DF6760
+
+Maneater-Win64-Shipping.exe+DF6738: 66 0F 6E 87 88 03 00 00  - movd xmm0,[rdi+00000388]
+Maneater-Win64-Shipping.exe+DF6740: 0F 5B C0                 - cvtdq2ps xmm0,xmm0
+Maneater-Win64-Shipping.exe+DF6743: F3 0F 2C C2              - cvttss2si eax,xmm2
+Maneater-Win64-Shipping.exe+DF6747: 66 0F 6E F8              - movd xmm7,eax
+Maneater-Win64-Shipping.exe+DF674B: 0F 5B FF                 - cvtdq2ps xmm7,xmm7
+Maneater-Win64-Shipping.exe+DF674E: F3 0F 59 FE              - mulss xmm7,xmm6
+Maneater-Win64-Shipping.exe+DF6752: F3 0F 58 C7              - addss xmm0,xmm7
+Maneater-Win64-Shipping.exe+DF6756: F3 0F 2C DF              - cvttss2si ebx,xmm7
+Maneater-Win64-Shipping.exe+DF675A: F3 0F 2C C0              - cvttss2si eax,xmm0
+Maneater-Win64-Shipping.exe+DF675E: 8B D3                    - mov edx,ebx
+// ---------- INJECTING HERE ----------
+Maneater-Win64-Shipping.exe+DF6760: 66 0F 6E 87 98 03 00 00  - movd xmm0,[rdi+00000398]
+// ---------- DONE INJECTING  ----------
+Maneater-Win64-Shipping.exe+DF6768: 0F 5B C0                 - cvtdq2ps xmm0,xmm0
+Maneater-Win64-Shipping.exe+DF676B: 89 87 88 03 00 00        - mov [rdi+00000388],eax
+Maneater-Win64-Shipping.exe+DF6771: F3 0F 58 C7              - addss xmm0,xmm7
+Maneater-Win64-Shipping.exe+DF6775: F3 0F 2C C0              - cvttss2si eax,xmm0
+Maneater-Win64-Shipping.exe+DF6779: 89 87 98 03 00 00        - mov [rdi+00000398],eax
+Maneater-Win64-Shipping.exe+DF677F: E8 1C 5A 08 00           - call Maneater-Win64-Shipping.exe+E7C1A0
+Maneater-Win64-Shipping.exe+DF6784: 41 0F 2F F9              - comiss xmm7,xmm9
+Maneater-Win64-Shipping.exe+DF6788: 76 1B                    - jna Maneater-Win64-Shipping.exe+DF67A5
+Maneater-Win64-Shipping.exe+DF678A: 48 8D 8F 38 03 00 00     - lea rcx,[rdi+00000338]
+Maneater-Win64-Shipping.exe+DF6791: C6 45 97 00              - mov byte ptr [rbp-69],00
+}
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>349134</ID>
+                  <Description>"Exp (Max 575847)"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>expInput</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>95646</ID>
+      <Description>"Terminate Cheats"</Description>
+      <Color>0000FF</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+{$LUA}
+if syntaxcheck then return end
+local al = getAddressList()
+for i = 0, al.Count - 1 do
+  if al[i].Type == vtAutoAssembler then al[i].Active = false end
+end
+local msg = [[
+Cheats have been deactiavted,
+     Hope you had a fun time!
+]]
+mShowMessage('Cheats Deactivated', msg, true, 0)
+memrec.Color = 0x000000FF
+{$ASM}
+nop
+[DISABLE]
+
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>95649</ID>
+      <Description>"DevInfo"</Description>
+      <Options moHideChildren="1"/>
+      <Color>00FFFF</Color>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>349149</ID>
+          <Description>"Game Information"</Description>
+          <Color>FFFF00</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$LUA}
+if syntaxcheck then return end
+[ENABLE]
+local msg = [[
+Game:                     Maneater
+
+Game Process:        Maneater-Win64-Shipping.exe
+
+Version:                  43151315
+
+Platform:                 Epic Games]]
+mShowMessage('Game Information', msg, true, 0)
+memrec.Color = 0x00FFFF00
+{$ASM}
+nop
+[DISABLE]
+
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>349148</ID>
+          <Description>"Table Information"</Description>
+          <Color>FFFF00</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$LUA}
+if syntaxcheck then return end
+[ENABLE]
+local msg = [[
+Table Creator:       Chr0nicxHack3r
+
+Table Version:       1.2
+
+Cheat Engine:         7.5
+
+Blackout Mode:      True]]
+mShowMessage('Table Information', msg, true, 0)
+memrec.Color = 0x00FFFF00
+{$ASM}
+nop
+[DISABLE]
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>349147</ID>
+          <Description>"-----------------------------"</Description>
+          <Color>00FFFF</Color>
+          <GroupHeader>1</GroupHeader>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>349109</ID>
+          <Description>"Donate (PayPal)"</Description>
+          <Color>FFFF00</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$LUA}
+[ENABLE]
+local str,Address
+str=inputQuery('Donate to PayPal', 'Link', 'https://www.paypal.com/paypalme/Chr0nicxHack3r')
+if str and str~='' then
+  ShellExecute(str,Address)
+end
+memrec.Color = 0x00FFFF00
+{$ASM}
+nop
+[DISABLE]
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>349110</ID>
+          <Description>"Donate (CashApp)"</Description>
+          <Color>FFFF00</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$LUA}
+[ENABLE]
+local str,Address
+str=inputQuery('Donate to CashApp', 'Link', 'https://cash.app/Chr0nicxHack3r')
+if str and str~='' then
+  ShellExecute(str,Address)
+end
+memrec.Color = 0x00FFFF00
+{$ASM}
+nop
+[DISABLE]
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>349111</ID>
+          <Description>"Donate (Venmo)"</Description>
+          <Color>FFFF00</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$LUA}
+[ENABLE]
+local str,Address
+str=inputQuery('Donate to Venmo', 'Link', 'https://venmo.com/Chr0nicxHack3r')
+if str and str~='' then
+  ShellExecute(str,Address)
+end
+memrec.Color = 0x00FFFF00
+{$ASM}
+nop
+[DISABLE]
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>349146</ID>
+          <Description>"Discord Invite"</Description>
+          <Color>FFFF00</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$LUA}
+[ENABLE]
+local str,Address
+str=inputQuery('Discord Invite', 'Link', 'https://discord.gg/8hw4eNNUvJ')
+if str and str~='' then
+  ShellExecute(str,Address)
+end
+memrec.Color = 0x00FFFF00
+{$ASM}
+nop
+[DISABLE]
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <LuaScript>--{
+--This must be executed
+--for the table to work!
+--}
+
+local t = translate
+
+MainForm.Title = 'Chr0nicxHack3r Cheat Table'
+
+CompactModeEnabled = false
+
+function disableHeaderSorting()
+   local addressListHeader = component_getComponent(AddressList, 1)
+   setMethodProperty(addressListHeader, 'OnSectionClick', nil)
+end
+
+function disableCompactMode()
+   control_setVisible(wincontrol_getControl(MainForm, 0), true)
+   control_setVisible(wincontrol_getControl(MainForm, 3), true)
+   CompactModeEnabled = false
+end
+
+function enableCompactMode()
+   control_setVisible(wincontrol_getControl(MainForm, 0), false)
+   control_setVisible(wincontrol_getControl(MainForm, 3), false)
+   CompactModeEnabled = true
+end
+
+function toggleCompactMode()
+   if CompactModeEnabled then
+      disableCompactMode()
+   else
+      enableCompactMode()
+   end
+end
+
+function addCompactModeMenu()
+   local name = 'miCTCompactMode'
+   local miCompactMode = nil
+   for i = 1, MainForm.Menu.Items.Count - 1 do
+      if MainForm.Menu.Items[i].Name == name then
+         miCompactMode = MainForm.Menu.Items[i]
+         break
+      end
+   end
+   if miCompactMode == nil then
+      miCompactMode = createMenuItem(MainForm.Menu.Items)
+      miCompactMode.Name = name
+      miCompactMode.Caption = t('Compact Mode')
+      miCompactMode.OnClick = toggleCompactMode
+      MainForm.Menu.Items.add(miCompactMode)
+   end
+end
+
+addCompactModeMenu()
+
+AddressList.OnAutoAssemblerEdit = nil
+
+function openLink(link)
+  if type(link) == "string" and link ~= nil then
+     return shellExecute(link)
+  else
+     return nil
+  end
+end
+
+function mShowMessage(title, texttoshow, withbutton, link)
+ local myform = createForm(false)
+ myform.Caption = title
+ myform.autosize = true
+ myform.BorderStyle = 'bsDialog'
+ myform.Position = 'poScreenCenter'
+ myform.Color = 0x000000
+
+ local font = createFont(myform)
+ font.Name = 'Comic Sans MS'
+ font.Height = -15
+ font.Size = 15
+ font.CharSet = 'ANSI_CHARSET'
+ font.pitch = 'fpFixed'
+ font.Quality = 'fqCleartype'
+ font.Color = 0x8C008C
+
+ local mylabel = createLabel(myform)
+ mylabel.Caption = texttoshow
+ mylabel.OptimalFill = true
+ mylabel.font = font
+ mylabel.Align = 'alClient'
+ mylabel.left = (myform.width - mylabel.width) / 2
+ mylabel.BorderSpacing.Around = 25
+
+
+ if withbutton then
+   local mybtn = createButton(myform)
+   mybtn.height = 30
+   mybtn.left = (myform.width - mybtn.width) / 2
+   mybtn.top = myform.height - mybtn.height
+   mybtn.Align = 'alBottom'
+   mybtn.BorderSpacing.Around = 25
+   mybtn.Caption = 'Okay'
+   mybtn.OnClick = function()
+   if link == nil or link == '' then
+      myform.hide()
+      return
+   else
+       openLink(link)
+       myform.hide()
+   end
+   end
+ end
+ myform.show()
+end
+
+FunctionArray={};
+registerLuaFunctionHighlight("FunctionArray");
+
+FunctionNamesArray={};
+registerLuaFunctionHighlight("FunctionNamesArray");
+
+function AddToFunctionLoop(name,func)
+FunctionNamesArray[#FunctionNamesArray+1]=name;
+FunctionArray[#FunctionArray+1]=func;
+end
+registerLuaFunctionHighlight("AddToFunctionLoop");
+
+function RemoveFromFunctionLoop(name)
+local INDEX=-1;
+for ind=0,#FunctionNamesArray,1 do
+if FunctionNamesArray[ind]~=nil then
+if FunctionNamesArray[ind]==name then
+INDEX=ind;
+break;
+end
+end
+end
+if INDEX~=-1 then
+FunctionArray[INDEX]=nil;
+FunctionNamesArray[INDEX]=nil;
+end
+end
+registerLuaFunctionHighlight("RemoveFromFunctionLoop");
+
+function CreateFunctionLoop()
+if FunctionLoop~=nil then
+FunctionLoop.suspend();
+FunctionLoop.terminate();
+FunctionLoop=nil;
+end
+FunctionLoop=createThread(function()
+while (1) do
+if #FunctionArray&gt;0 then
+for ind=0,#FunctionArray,1 do
+if  FunctionArray[ind]~=nil then
+ FunctionArray[ind]();
+ end
+end
+end
+sleep(FunctionLoopSpeed);
+end
+end);
+FunctionLoop.Name="Main_FunctionLoop";
+end
+registerLuaFunctionHighlight("CreateFunctionLoop");
+registerLuaFunctionHighlight("FunctionLoop");
+
+FunctionLoopSpeed=50;
+registerLuaFunctionHighlight("FunctionLoopSpeed");
+
+CreateFunctionLoop();
+</LuaScript>
+</CheatTable>
