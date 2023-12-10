@@ -5,7 +5,7 @@
       <ID>95647</ID>
       <Description>"Activation"</Description>
       <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
-      <Color>00FF00</Color>
+      <Color>0000FF</Color>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{$LUA}
 AddressList.OnAutoAssemblerEdit = nil
@@ -87,7 +87,7 @@ memrec.Color = 0x000000FF
                   <VariableType>Byte</VariableType>
                   <Address>"UnityPlayer.dll"+01CCC2D8</Address>
                   <Offsets>
-                    <Offset>424</Offset>
+                    <Offset>444</Offset>
                     <Offset>F8</Offset>
                     <Offset>10</Offset>
                     <Offset>68</Offset>
@@ -102,7 +102,7 @@ memrec.Color = 0x000000FF
                   <VariableType>Byte</VariableType>
                   <Address>"UnityPlayer.dll"+01CCC2D8</Address>
                   <Offsets>
-                    <Offset>458</Offset>
+                    <Offset>478</Offset>
                     <Offset>F8</Offset>
                     <Offset>10</Offset>
                     <Offset>68</Offset>
@@ -117,7 +117,7 @@ memrec.Color = 0x000000FF
                   <VariableType>Byte</VariableType>
                   <Address>"UnityPlayer.dll"+01CCC2D8</Address>
                   <Offsets>
-                    <Offset>474</Offset>
+                    <Offset>49C</Offset>
                     <Offset>F8</Offset>
                     <Offset>10</Offset>
                     <Offset>68</Offset>
@@ -132,7 +132,7 @@ memrec.Color = 0x000000FF
                   <VariableType>Byte</VariableType>
                   <Address>"UnityPlayer.dll"+01CCC2D8</Address>
                   <Offsets>
-                    <Offset>475</Offset>
+                    <Offset>49D</Offset>
                     <Offset>F8</Offset>
                     <Offset>10</Offset>
                     <Offset>68</Offset>
@@ -147,7 +147,7 @@ memrec.Color = 0x000000FF
                   <VariableType>Byte</VariableType>
                   <Address>"UnityPlayer.dll"+01CCC2D8</Address>
                   <Offsets>
-                    <Offset>574</Offset>
+                    <Offset>5A4</Offset>
                     <Offset>F8</Offset>
                     <Offset>10</Offset>
                     <Offset>68</Offset>
@@ -162,7 +162,7 @@ memrec.Color = 0x000000FF
                   <VariableType>Byte</VariableType>
                   <Address>"UnityPlayer.dll"+01CCC2D8</Address>
                   <Offsets>
-                    <Offset>575</Offset>
+                    <Offset>5A5</Offset>
                     <Offset>F8</Offset>
                     <Offset>10</Offset>
                     <Offset>68</Offset>
@@ -177,7 +177,7 @@ memrec.Color = 0x000000FF
                   <VariableType>Byte</VariableType>
                   <Address>"UnityPlayer.dll"+01CCC2D8</Address>
                   <Offsets>
-                    <Offset>594</Offset>
+                    <Offset>5C4</Offset>
                     <Offset>F8</Offset>
                     <Offset>10</Offset>
                     <Offset>68</Offset>
@@ -192,7 +192,7 @@ memrec.Color = 0x000000FF
                   <VariableType>Byte</VariableType>
                   <Address>"UnityPlayer.dll"+01CCC2D8</Address>
                   <Offsets>
-                    <Offset>674</Offset>
+                    <Offset>6A4</Offset>
                     <Offset>F8</Offset>
                     <Offset>10</Offset>
                     <Offset>68</Offset>
@@ -215,7 +215,7 @@ memrec.Color = 0x000000FF
                   <VariableType>Float</VariableType>
                   <Address>"UnityPlayer.dll"+01CCC2D8</Address>
                   <Offsets>
-                    <Offset>688</Offset>
+                    <Offset>6B8</Offset>
                     <Offset>F8</Offset>
                     <Offset>10</Offset>
                     <Offset>68</Offset>
@@ -230,7 +230,7 @@ memrec.Color = 0x000000FF
                   <VariableType>Float</VariableType>
                   <Address>"UnityPlayer.dll"+01CCC2D8</Address>
                   <Offsets>
-                    <Offset>684</Offset>
+                    <Offset>6B4</Offset>
                     <Offset>F8</Offset>
                     <Offset>10</Offset>
                     <Offset>68</Offset>
@@ -245,7 +245,7 @@ memrec.Color = 0x000000FF
                   <VariableType>Float</VariableType>
                   <Address>"UnityPlayer.dll"+01CCC2D8</Address>
                   <Offsets>
-                    <Offset>63C</Offset>
+                    <Offset>66C</Offset>
                     <Offset>F8</Offset>
                     <Offset>10</Offset>
                     <Offset>68</Offset>
@@ -260,7 +260,7 @@ memrec.Color = 0x000000FF
                   <VariableType>Float</VariableType>
                   <Address>"UnityPlayer.dll"+01CCC2D8</Address>
                   <Offsets>
-                    <Offset>5B8</Offset>
+                    <Offset>5E8</Offset>
                     <Offset>F8</Offset>
                     <Offset>10</Offset>
                     <Offset>68</Offset>
@@ -275,7 +275,7 @@ memrec.Color = 0x000000FF
                   <VariableType>Float</VariableType>
                   <Address>"UnityPlayer.dll"+01CCC2D8</Address>
                   <Offsets>
-                    <Offset>5B0</Offset>
+                    <Offset>5E0</Offset>
                     <Offset>F8</Offset>
                     <Offset>10</Offset>
                     <Offset>68</Offset>
@@ -290,7 +290,7 @@ memrec.Color = 0x000000FF
                   <VariableType>Float</VariableType>
                   <Address>"UnityPlayer.dll"+01CCC2D8</Address>
                   <Offsets>
-                    <Offset>5AC</Offset>
+                    <Offset>5DC</Offset>
                     <Offset>F8</Offset>
                     <Offset>10</Offset>
                     <Offset>68</Offset>
@@ -305,7 +305,7 @@ memrec.Color = 0x000000FF
                   <VariableType>Float</VariableType>
                   <Address>"UnityPlayer.dll"+01CCC2D8</Address>
                   <Offsets>
-                    <Offset>570</Offset>
+                    <Offset>5A0</Offset>
                     <Offset>F8</Offset>
                     <Offset>10</Offset>
                     <Offset>68</Offset>
@@ -320,22 +320,7 @@ memrec.Color = 0x000000FF
                   <VariableType>4 Bytes</VariableType>
                   <Address>"UnityPlayer.dll"+01CCC2D8</Address>
                   <Offsets>
-                    <Offset>56C</Offset>
-                    <Offset>F8</Offset>
-                    <Offset>10</Offset>
-                    <Offset>68</Offset>
-                    <Offset>8</Offset>
-                    <Offset>D0</Offset>
-                  </Offsets>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>349160</ID>
-                  <Description>"Fear Level"</Description>
-                  <ShowAsSigned>0</ShowAsSigned>
-                  <VariableType>4 Bytes</VariableType>
-                  <Address>"UnityPlayer.dll"+01CCC2D8</Address>
-                  <Offsets>
-                    <Offset>4D8</Offset>
+                    <Offset>59C</Offset>
                     <Offset>F8</Offset>
                     <Offset>10</Offset>
                     <Offset>68</Offset>
@@ -350,7 +335,7 @@ memrec.Color = 0x000000FF
                   <VariableType>Float</VariableType>
                   <Address>"UnityPlayer.dll"+01CCC2D8</Address>
                   <Offsets>
-                    <Offset>42C</Offset>
+                    <Offset>44C</Offset>
                     <Offset>F8</Offset>
                     <Offset>10</Offset>
                     <Offset>68</Offset>
@@ -361,10 +346,11 @@ memrec.Color = 0x000000FF
                 <CheatEntry>
                   <ID>349121</ID>
                   <Description>"Stamina"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
                   <VariableType>Float</VariableType>
                   <Address>"UnityPlayer.dll"+01CCC2D8</Address>
                   <Offsets>
-                    <Offset>420</Offset>
+                    <Offset>440</Offset>
                     <Offset>F8</Offset>
                     <Offset>10</Offset>
                     <Offset>68</Offset>
@@ -379,7 +365,7 @@ memrec.Color = 0x000000FF
                   <VariableType>Float</VariableType>
                   <Address>"UnityPlayer.dll"+01CCC2D8</Address>
                   <Offsets>
-                    <Offset>3F8</Offset>
+                    <Offset>418</Offset>
                     <Offset>F8</Offset>
                     <Offset>10</Offset>
                     <Offset>68</Offset>
@@ -390,10 +376,11 @@ memrec.Color = 0x000000FF
                 <CheatEntry>
                   <ID>349162</ID>
                   <Description>"Player Exp"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
                   <VariableType>4 Bytes</VariableType>
                   <Address>"UnityPlayer.dll"+01CCC2D8</Address>
                   <Offsets>
-                    <Offset>5A0</Offset>
+                    <Offset>5B0</Offset>
                     <Offset>0</Offset>
                     <Offset>3C</Offset>
                     <Offset>C8</Offset>
@@ -411,7 +398,7 @@ memrec.Color = 0x000000FF
                   <VariableType>4 Bytes</VariableType>
                   <Address>"UnityPlayer.dll"+01BE9D00</Address>
                   <Offsets>
-                    <Offset>1F0</Offset>
+                    <Offset>1F4</Offset>
                     <Offset>B0</Offset>
                     <Offset>1B8</Offset>
                     <Offset>198</Offset>
@@ -449,7 +436,7 @@ memrec.Color = 0x000000FF
       amount after receiving quota met message
 }
 [ENABLE]
-aobscan(profQuota3,48 63 86 2C 01 00 00)
+aobscan(profQuota3,48 63 86 2C 01 00 00) // should be unique
 alloc(newmem,$1000,profQuota3)
 alloc(quotaInput,4)
 label(code,return)
@@ -472,6 +459,33 @@ profQuota3:
   db 48 63 86 2C 01 00 00
 unregistersymbol(*)
 dealloc(*)
+{
+// ORIGINAL CODE - INJECTION POINT: TimeOfDay:UpdateProfitQuotaCurrentTime+196
+
+TimeOfDay:UpdateProfitQuotaCurrentTime+168: 41 FF D3                       - call r11
+TimeOfDay:UpdateProfitQuotaCurrentTime+16b: 48 8B D0                       - mov rdx,rax
+TimeOfDay:UpdateProfitQuotaCurrentTime+16e: 48 8B 45 A8                    - mov rax,[rbp-58]
+TimeOfDay:UpdateProfitQuotaCurrentTime+172: 48 8B C8                       - mov rcx,rax
+TimeOfDay:UpdateProfitQuotaCurrentTime+175: 48 8B 00                       - mov rax,[rax]
+TimeOfDay:UpdateProfitQuotaCurrentTime+178: FF 90 60 04 00 00              - call qword ptr [rax+00000460]
+TimeOfDay:UpdateProfitQuotaCurrentTime+17e: 48 B8 20 7F 5E 9D 13 02 00 00  - mov rax,000002139D5E7F20
+TimeOfDay:UpdateProfitQuotaCurrentTime+188: 48 8B 00                       - mov rax,[rax]
+TimeOfDay:UpdateProfitQuotaCurrentTime+18b: 48 8B 80 10 03 00 00           - mov rax,[rax+00000310]
+TimeOfDay:UpdateProfitQuotaCurrentTime+192: 48 89 45 A8                    - mov [rbp-58],rax
+// ---------- INJECTING HERE ----------
+TimeOfDay:UpdateProfitQuotaCurrentTime+196: 48 63 86 2C 01 00 00           - movsxd  rax,dword ptr [rsi+0000012C]
+// ---------- DONE INJECTING  ----------
+TimeOfDay:UpdateProfitQuotaCurrentTime+19d: 48 89 45 90                    - mov [rbp-70],rax
+TimeOfDay:UpdateProfitQuotaCurrentTime+1a1: 48 B9 38 17 3D E5 12 02 00 00  - mov rcx,00000212E53D1738
+TimeOfDay:UpdateProfitQuotaCurrentTime+1ab: 66 66 90                       - nop 3
+TimeOfDay:UpdateProfitQuotaCurrentTime+1ae: 49 BB 80 10 05 9F 11 02 00 00  - mov r11,System.Object:__icall_wrapper_ves_icall_object_new_specific
+TimeOfDay:UpdateProfitQuotaCurrentTime+1b8: 41 FF D3                       - call r11
+TimeOfDay:UpdateProfitQuotaCurrentTime+1bb: 48 8B 4D 90                    - mov rcx,[rbp-70]
+TimeOfDay:UpdateProfitQuotaCurrentTime+1bf: 89 48 10                       - mov [rax+10],ecx
+TimeOfDay:UpdateProfitQuotaCurrentTime+1c2: 48 89 45 98                    - mov [rbp-68],rax
+TimeOfDay:UpdateProfitQuotaCurrentTime+1c6: 48 63 86 28 01 00 00           - movsxd  rax,dword ptr [rsi+00000128]
+TimeOfDay:UpdateProfitQuotaCurrentTime+1cd: 48 89 45 A0                    - mov [rbp-60],rax
+}
 </AssemblerScript>
               <CheatEntries>
                 <CheatEntry>
@@ -503,7 +517,7 @@ dealloc(*)
       everyone!
 }
 [ENABLE]
-aobscan(GetAddress,48 8B 06 48 8B 00 0F B7 48 18 48 83 F9 07 0F 82 E1)
+aobscan(GetAddress,48 8B 06 48 8B 00 0F B7 48 18 48 83 F9 07 0F 82 E1) // should be unique
 alloc(newmem,$1000,GetAddress)
 alloc(LocalPlayer,4)
 label(code,return)
@@ -525,6 +539,33 @@ GetAddress:
   db 48 8B 06 48 8B 00
 unregistersymbol(*)
 dealloc(*)
+{
+// ORIGINAL CODE - INJECTION POINT: 1B4C9D1F28E
+
+1B4C9D1F26E: 48 83 C0 08                    - add rax,08
+1B4C9D1F272: 48 8B D0                       - mov rdx,rax
+1B4C9D1F275: 48 63 08                       - movsxd  rcx,dword ptr [rax]
+1B4C9D1F278: 41 03 CC                       - add ecx,r12d
+1B4C9D1F27B: 89 08                          - mov [rax],ecx
+1B4C9D1F27D: 33 C0                          - xor eax,eax
+1B4C9D1F27F: 44 8B F8                       - mov r15d,eax
+1B4C9D1F282: C7 46 50 01 00 00 00           - mov [rsi+50],00000001
+1B4C9D1F289: 48 85 F6                       - test rsi,rsi
+1B4C9D1F28C: 74 2F                          - je 1B4C9D1F2BD
+// ---------- INJECTING HERE ----------
+1B4C9D1F28E: 48 8B 06                       - mov rax,[rsi]
+// ---------- DONE INJECTING  ----------
+1B4C9D1F291: 48 8B 00                       - mov rax,[rax]
+1B4C9D1F294: 0F B7 48 18                    - movzx ecx,word ptr [rax+18]
+1B4C9D1F298: 48 83 F9 07                    - cmp rcx,07
+1B4C9D1F29C: 0F 82 E1 01 00 00              - jb 1B4C9D1F483
+1B4C9D1F2A2: 48 8B 40 10                    - mov rax,[rax+10]
+1B4C9D1F2A6: 48 8B 40 30                    - mov rax,[rax+30]
+1B4C9D1F2AA: 48 B9 D8 8C D0 E1 B3 01 00 00  - mov rcx,000001B3E1D08CD8
+1B4C9D1F2B4: 48 3B C1                       - cmp rax,rcx
+1B4C9D1F2B7: 0F 85 AE 01 00 00              - jne 1B4C9D1F46B
+1B4C9D1F2BD: 48 63 85 68 FF FF FF           - movsxd  rax,dword ptr [rbp-00000098]
+}
 </AssemblerScript>
           <CheatEntries>
             <CheatEntry>
@@ -538,56 +579,56 @@ dealloc(*)
                   <Description>"Is Exhausted"</Description>
                   <ShowAsSigned>0</ShowAsSigned>
                   <VariableType>4 Bytes</VariableType>
-                  <Address>[LocalPlayer]+424</Address>
+                  <Address>[LocalPlayer]+444</Address>
                 </CheatEntry>
                 <CheatEntry>
                   <ID>349176</ID>
                   <Description>"Is Taking Fall Damage"</Description>
                   <ShowAsSigned>0</ShowAsSigned>
                   <VariableType>4 Bytes</VariableType>
-                  <Address>[LocalPlayer]+458</Address>
+                  <Address>[LocalPlayer]+478</Address>
                 </CheatEntry>
                 <CheatEntry>
                   <ID>349177</ID>
                   <Description>"Is Sinking"</Description>
                   <ShowAsSigned>0</ShowAsSigned>
                   <VariableType>4 Bytes</VariableType>
-                  <Address>[LocalPlayer]+474</Address>
+                  <Address>[LocalPlayer]+49C</Address>
                 </CheatEntry>
                 <CheatEntry>
                   <ID>349178</ID>
                   <Description>"Is Underwater"</Description>
                   <ShowAsSigned>0</ShowAsSigned>
                   <VariableType>4 Bytes</VariableType>
-                  <Address>[LocalPlayer]+475</Address>
+                  <Address>[LocalPlayer]+49D</Address>
                 </CheatEntry>
                 <CheatEntry>
                   <ID>349181</ID>
                   <Description>"Is Critically Injured"</Description>
                   <ShowAsSigned>0</ShowAsSigned>
                   <VariableType>4 Bytes</VariableType>
-                  <Address>[LocalPlayer]+574</Address>
+                  <Address>[LocalPlayer]+5A4</Address>
                 </CheatEntry>
                 <CheatEntry>
                   <ID>349182</ID>
                   <Description>"Has Been Critically Injured"</Description>
                   <ShowAsSigned>0</ShowAsSigned>
                   <VariableType>Byte</VariableType>
-                  <Address>[LocalPlayer]+575</Address>
+                  <Address>[LocalPlayer]+5A5</Address>
                 </CheatEntry>
                 <CheatEntry>
                   <ID>349200</ID>
                   <Description>"Is Player Bleading Heavy"</Description>
                   <ShowAsSigned>0</ShowAsSigned>
                   <VariableType>4 Bytes</VariableType>
-                  <Address>[LocalPlayer]+594</Address>
+                  <Address>[LocalPlayer]+5C4</Address>
                 </CheatEntry>
                 <CheatEntry>
                   <ID>349188</ID>
                   <Description>"Is Speaking To Walkie"</Description>
                   <ShowAsSigned>0</ShowAsSigned>
                   <VariableType>4 Bytes</VariableType>
-                  <Address>[LocalPlayer]+674</Address>
+                  <Address>[LocalPlayer]+6A4</Address>
                 </CheatEntry>
               </CheatEntries>
             </CheatEntry>
@@ -602,63 +643,56 @@ dealloc(*)
                   <Description>"Max Insanity Level"</Description>
                   <ShowAsSigned>0</ShowAsSigned>
                   <VariableType>Float</VariableType>
-                  <Address>[LocalPlayer]+688</Address>
+                  <Address>[LocalPlayer]+6B8</Address>
                 </CheatEntry>
                 <CheatEntry>
                   <ID>349189</ID>
                   <Description>"Insanity Level"</Description>
                   <ShowAsSigned>0</ShowAsSigned>
                   <VariableType>Float</VariableType>
-                  <Address>[LocalPlayer]+684</Address>
+                  <Address>[LocalPlayer]+6B4</Address>
                 </CheatEntry>
                 <CheatEntry>
                   <ID>349187</ID>
                   <Description>"Climb Speed"</Description>
                   <ShowAsSigned>0</ShowAsSigned>
                   <VariableType>Float</VariableType>
-                  <Address>[LocalPlayer]+63C</Address>
+                  <Address>[LocalPlayer]+66C</Address>
                 </CheatEntry>
                 <CheatEntry>
                   <ID>349186</ID>
                   <Description>"Carry Weight"</Description>
                   <ShowAsSigned>0</ShowAsSigned>
                   <VariableType>Float</VariableType>
-                  <Address>[LocalPlayer]+5B8</Address>
+                  <Address>[LocalPlayer]+5E8</Address>
                 </CheatEntry>
                 <CheatEntry>
                   <ID>349185</ID>
                   <Description>"Throw Power"</Description>
                   <ShowAsSigned>0</ShowAsSigned>
                   <VariableType>Float</VariableType>
-                  <Address>[LocalPlayer]+5B0</Address>
+                  <Address>[LocalPlayer]+5E0</Address>
                 </CheatEntry>
                 <CheatEntry>
                   <ID>349184</ID>
                   <Description>"Grab Distance"</Description>
                   <ShowAsSigned>0</ShowAsSigned>
                   <VariableType>Float</VariableType>
-                  <Address>[LocalPlayer]+5AC</Address>
+                  <Address>[LocalPlayer]+5DC</Address>
                 </CheatEntry>
                 <CheatEntry>
                   <ID>349180</ID>
                   <Description>"Health Regen Timer"</Description>
                   <ShowAsSigned>0</ShowAsSigned>
                   <VariableType>Float</VariableType>
-                  <Address>[LocalPlayer]+570</Address>
+                  <Address>[LocalPlayer]+5A0</Address>
                 </CheatEntry>
                 <CheatEntry>
                   <ID>349179</ID>
                   <Description>"Health"</Description>
                   <ShowAsSigned>0</ShowAsSigned>
                   <VariableType>4 Bytes</VariableType>
-                  <Address>[LocalPlayer]+56C</Address>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>349205</ID>
-                  <Description>"Fear Level"</Description>
-                  <ShowAsSigned>0</ShowAsSigned>
-                  <VariableType>4 Bytes</VariableType>
-                  <Address>[LocalPlayer]+4D8</Address>
+                  <Address>[LocalPlayer]+59C</Address>
                 </CheatEntry>
                 <CheatEntry>
                   <ID>349175</ID>
@@ -672,22 +706,23 @@ dealloc(*)
                   <Description>"Stamina"</Description>
                   <ShowAsSigned>0</ShowAsSigned>
                   <VariableType>Float</VariableType>
-                  <Address>[LocalPlayer]+420</Address>
+                  <Address>[LocalPlayer]+440</Address>
                 </CheatEntry>
                 <CheatEntry>
                   <ID>349173</ID>
                   <Description>"Movement Speed (4.599999905)"</Description>
                   <ShowAsSigned>0</ShowAsSigned>
                   <VariableType>Float</VariableType>
-                  <Address>[LocalPlayer]+3F8</Address>
+                  <Address>[LocalPlayer]+418</Address>
                 </CheatEntry>
                 <CheatEntry>
                   <ID>349209</ID>
                   <Description>"Player Exp"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
                   <VariableType>4 Bytes</VariableType>
                   <Address>"UnityPlayer.dll"+01CCC2D8</Address>
                   <Offsets>
-                    <Offset>5A0</Offset>
+                    <Offset>5B0</Offset>
                     <Offset>0</Offset>
                     <Offset>3C</Offset>
                     <Offset>C8</Offset>
@@ -705,7 +740,7 @@ dealloc(*)
                   <VariableType>4 Bytes</VariableType>
                   <Address>"UnityPlayer.dll"+01BE9D00</Address>
                   <Offsets>
-                    <Offset>1F0</Offset>
+                    <Offset>1F4</Offset>
                     <Offset>B0</Offset>
                     <Offset>1B8</Offset>
                     <Offset>198</Offset>
@@ -762,7 +797,7 @@ Game:                     Lethal Company
 
 Game Process:        Lethal Company.exe
 
-Version:                  40
+Version:                  45
 
 Platform:                 Steam]]
 mShowMessage('Game Information', msg, true, 0)
@@ -785,7 +820,7 @@ if syntaxcheck then return end
 local msg = [[
 Table Creator:       Chr0nicxHack3r
 
-Table Version:       1.0
+Table Version:       1.1
 
 Cheat Engine:         7.5
 
