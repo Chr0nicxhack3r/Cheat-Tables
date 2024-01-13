@@ -25,7 +25,6 @@ if (getCEVersion() ~= 7.5) then
 end
 
 function MakeCheatCatsOrange()
-   AddressList.Pointers_AffectsAllPlayers.Color=orange
    AddressList.Scripts_FriendsLobbySollo.Color=orange
    AddressList.GetLocalPlayer_ReadDesc.Color=orange
 end
@@ -68,411 +67,6 @@ memrec.Color = 0x000000FF
 </AssemblerScript>
       <CheatEntries>
         <CheatEntry>
-          <ID>349112</ID>
-          <Description>"Pointers_AffectsAllPlayers"</Description>
-          <Options moHideChildren="1" moManualExpandCollapse="1" moDeactivateChildrenAsWell="1"/>
-          <Color>005AFF</Color>
-          <GroupHeader>1</GroupHeader>
-          <CheatEntries>
-            <CheatEntry>
-              <ID>349194</ID>
-              <Description>"Bools"</Description>
-              <Options moHideChildren="1" moManualExpandCollapse="1" moDeactivateChildrenAsWell="1"/>
-              <GroupHeader>1</GroupHeader>
-              <CheatEntries>
-                <CheatEntry>
-                  <ID>349153</ID>
-                  <Description>"Is Exhausted"</Description>
-                  <ShowAsSigned>0</ShowAsSigned>
-                  <VariableType>Byte</VariableType>
-                  <Address>"UnityPlayer.dll"+01CCC2D8</Address>
-                  <Offsets>
-                    <Offset>444</Offset>
-                    <Offset>F8</Offset>
-                    <Offset>10</Offset>
-                    <Offset>68</Offset>
-                    <Offset>8</Offset>
-                    <Offset>D0</Offset>
-                  </Offsets>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>349196</ID>
-                  <Description>"Taking Fall Damage"</Description>
-                  <ShowAsSigned>0</ShowAsSigned>
-                  <VariableType>Byte</VariableType>
-                  <Address>"UnityPlayer.dll"+01CCC2D8</Address>
-                  <Offsets>
-                    <Offset>478</Offset>
-                    <Offset>F8</Offset>
-                    <Offset>10</Offset>
-                    <Offset>68</Offset>
-                    <Offset>8</Offset>
-                    <Offset>D0</Offset>
-                  </Offsets>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>349197</ID>
-                  <Description>"Is Sinking"</Description>
-                  <ShowAsSigned>0</ShowAsSigned>
-                  <VariableType>Byte</VariableType>
-                  <Address>"UnityPlayer.dll"+01CCC2D8</Address>
-                  <Offsets>
-                    <Offset>49C</Offset>
-                    <Offset>F8</Offset>
-                    <Offset>10</Offset>
-                    <Offset>68</Offset>
-                    <Offset>8</Offset>
-                    <Offset>D0</Offset>
-                  </Offsets>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>349198</ID>
-                  <Description>"Is Underwater"</Description>
-                  <ShowAsSigned>0</ShowAsSigned>
-                  <VariableType>Byte</VariableType>
-                  <Address>"UnityPlayer.dll"+01CCC2D8</Address>
-                  <Offsets>
-                    <Offset>49D</Offset>
-                    <Offset>F8</Offset>
-                    <Offset>10</Offset>
-                    <Offset>68</Offset>
-                    <Offset>8</Offset>
-                    <Offset>D0</Offset>
-                  </Offsets>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>349154</ID>
-                  <Description>"Is Critically Injured"</Description>
-                  <ShowAsSigned>0</ShowAsSigned>
-                  <VariableType>Byte</VariableType>
-                  <Address>"UnityPlayer.dll"+01CCC2D8</Address>
-                  <Offsets>
-                    <Offset>5A4</Offset>
-                    <Offset>F8</Offset>
-                    <Offset>10</Offset>
-                    <Offset>68</Offset>
-                    <Offset>8</Offset>
-                    <Offset>D0</Offset>
-                  </Offsets>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>349199</ID>
-                  <Description>"Has Been Critically Injured"</Description>
-                  <ShowAsSigned>0</ShowAsSigned>
-                  <VariableType>Byte</VariableType>
-                  <Address>"UnityPlayer.dll"+01CCC2D8</Address>
-                  <Offsets>
-                    <Offset>5A5</Offset>
-                    <Offset>F8</Offset>
-                    <Offset>10</Offset>
-                    <Offset>68</Offset>
-                    <Offset>8</Offset>
-                    <Offset>D0</Offset>
-                  </Offsets>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>349156</ID>
-                  <Description>"Bleeding Heavy"</Description>
-                  <ShowAsSigned>0</ShowAsSigned>
-                  <VariableType>Byte</VariableType>
-                  <Address>"UnityPlayer.dll"+01CCC2D8</Address>
-                  <Offsets>
-                    <Offset>5C4</Offset>
-                    <Offset>F8</Offset>
-                    <Offset>10</Offset>
-                    <Offset>68</Offset>
-                    <Offset>8</Offset>
-                    <Offset>D0</Offset>
-                  </Offsets>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>349164</ID>
-                  <Description>"Speaking into walkie-talkie"</Description>
-                  <ShowAsSigned>0</ShowAsSigned>
-                  <VariableType>Byte</VariableType>
-                  <Address>"UnityPlayer.dll"+01CCC2D8</Address>
-                  <Offsets>
-                    <Offset>6A4</Offset>
-                    <Offset>F8</Offset>
-                    <Offset>10</Offset>
-                    <Offset>68</Offset>
-                    <Offset>8</Offset>
-                    <Offset>D0</Offset>
-                  </Offsets>
-                </CheatEntry>
-              </CheatEntries>
-            </CheatEntry>
-            <CheatEntry>
-              <ID>349195</ID>
-              <Description>"Values"</Description>
-              <Options moHideChildren="1" moManualExpandCollapse="1" moDeactivateChildrenAsWell="1"/>
-              <GroupHeader>1</GroupHeader>
-              <CheatEntries>
-                <CheatEntry>
-                  <ID>349151</ID>
-                  <Description>"Max Insanity Level"</Description>
-                  <ShowAsSigned>0</ShowAsSigned>
-                  <VariableType>Float</VariableType>
-                  <Address>"UnityPlayer.dll"+01CCC2D8</Address>
-                  <Offsets>
-                    <Offset>6B8</Offset>
-                    <Offset>F8</Offset>
-                    <Offset>10</Offset>
-                    <Offset>68</Offset>
-                    <Offset>8</Offset>
-                    <Offset>D0</Offset>
-                  </Offsets>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>349201</ID>
-                  <Description>"Insanity Level"</Description>
-                  <ShowAsSigned>0</ShowAsSigned>
-                  <VariableType>Float</VariableType>
-                  <Address>"UnityPlayer.dll"+01CCC2D8</Address>
-                  <Offsets>
-                    <Offset>6B4</Offset>
-                    <Offset>F8</Offset>
-                    <Offset>10</Offset>
-                    <Offset>68</Offset>
-                    <Offset>8</Offset>
-                    <Offset>D0</Offset>
-                  </Offsets>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>349202</ID>
-                  <Description>"Climbing Speed"</Description>
-                  <ShowAsSigned>0</ShowAsSigned>
-                  <VariableType>Float</VariableType>
-                  <Address>"UnityPlayer.dll"+01CCC2D8</Address>
-                  <Offsets>
-                    <Offset>66C</Offset>
-                    <Offset>F8</Offset>
-                    <Offset>10</Offset>
-                    <Offset>68</Offset>
-                    <Offset>8</Offset>
-                    <Offset>D0</Offset>
-                  </Offsets>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>349150</ID>
-                  <Description>"Carrying Weight"</Description>
-                  <ShowAsSigned>0</ShowAsSigned>
-                  <VariableType>Float</VariableType>
-                  <Address>"UnityPlayer.dll"+01CCC2D8</Address>
-                  <Offsets>
-                    <Offset>5E8</Offset>
-                    <Offset>F8</Offset>
-                    <Offset>10</Offset>
-                    <Offset>68</Offset>
-                    <Offset>8</Offset>
-                    <Offset>D0</Offset>
-                  </Offsets>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>349203</ID>
-                  <Description>"Throw Power"</Description>
-                  <ShowAsSigned>0</ShowAsSigned>
-                  <VariableType>Float</VariableType>
-                  <Address>"UnityPlayer.dll"+01CCC2D8</Address>
-                  <Offsets>
-                    <Offset>5E0</Offset>
-                    <Offset>F8</Offset>
-                    <Offset>10</Offset>
-                    <Offset>68</Offset>
-                    <Offset>8</Offset>
-                    <Offset>D0</Offset>
-                  </Offsets>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>349163</ID>
-                  <Description>"Grab Distance"</Description>
-                  <ShowAsSigned>0</ShowAsSigned>
-                  <VariableType>Float</VariableType>
-                  <Address>"UnityPlayer.dll"+01CCC2D8</Address>
-                  <Offsets>
-                    <Offset>5DC</Offset>
-                    <Offset>F8</Offset>
-                    <Offset>10</Offset>
-                    <Offset>68</Offset>
-                    <Offset>8</Offset>
-                    <Offset>D0</Offset>
-                  </Offsets>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>349204</ID>
-                  <Description>"Health Regen Timer"</Description>
-                  <ShowAsSigned>0</ShowAsSigned>
-                  <VariableType>Float</VariableType>
-                  <Address>"UnityPlayer.dll"+01CCC2D8</Address>
-                  <Offsets>
-                    <Offset>5A0</Offset>
-                    <Offset>F8</Offset>
-                    <Offset>10</Offset>
-                    <Offset>68</Offset>
-                    <Offset>8</Offset>
-                    <Offset>D0</Offset>
-                  </Offsets>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>349149</ID>
-                  <Description>"Health"</Description>
-                  <ShowAsSigned>0</ShowAsSigned>
-                  <VariableType>4 Bytes</VariableType>
-                  <Address>"UnityPlayer.dll"+01CCC2D8</Address>
-                  <Offsets>
-                    <Offset>59C</Offset>
-                    <Offset>F8</Offset>
-                    <Offset>10</Offset>
-                    <Offset>68</Offset>
-                    <Offset>8</Offset>
-                    <Offset>D0</Offset>
-                  </Offsets>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>349157</ID>
-                  <Description>"Jump Force"</Description>
-                  <ShowAsSigned>0</ShowAsSigned>
-                  <VariableType>Float</VariableType>
-                  <Address>"UnityPlayer.dll"+01CCC2D8</Address>
-                  <Offsets>
-                    <Offset>44C</Offset>
-                    <Offset>F8</Offset>
-                    <Offset>10</Offset>
-                    <Offset>68</Offset>
-                    <Offset>8</Offset>
-                    <Offset>D0</Offset>
-                  </Offsets>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>349121</ID>
-                  <Description>"Stamina"</Description>
-                  <ShowAsSigned>0</ShowAsSigned>
-                  <VariableType>Float</VariableType>
-                  <Address>"UnityPlayer.dll"+01CCC2D8</Address>
-                  <Offsets>
-                    <Offset>440</Offset>
-                    <Offset>F8</Offset>
-                    <Offset>10</Offset>
-                    <Offset>68</Offset>
-                    <Offset>8</Offset>
-                    <Offset>D0</Offset>
-                  </Offsets>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>349206</ID>
-                  <Description>"Movement Speed (4.599999905)"</Description>
-                  <ShowAsSigned>0</ShowAsSigned>
-                  <VariableType>Float</VariableType>
-                  <Address>"UnityPlayer.dll"+01CCC2D8</Address>
-                  <Offsets>
-                    <Offset>418</Offset>
-                    <Offset>F8</Offset>
-                    <Offset>10</Offset>
-                    <Offset>68</Offset>
-                    <Offset>8</Offset>
-                    <Offset>D0</Offset>
-                  </Offsets>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>349162</ID>
-                  <Description>"Player Exp"</Description>
-                  <ShowAsSigned>0</ShowAsSigned>
-                  <VariableType>4 Bytes</VariableType>
-                  <Address>"UnityPlayer.dll"+01CCC2D8</Address>
-                  <Offsets>
-                    <Offset>5B0</Offset>
-                    <Offset>0</Offset>
-                    <Offset>3C</Offset>
-                    <Offset>C8</Offset>
-                    <Offset>88</Offset>
-                    <Offset>D8</Offset>
-                    <Offset>D68</Offset>
-                    <Offset>4F0</Offset>
-                    <Offset>40</Offset>
-                  </Offsets>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>14</ID>
-                  <Description>"Store Credits (Max 10000000)"</Description>
-                  <ShowAsSigned>0</ShowAsSigned>
-                  <VariableType>4 Bytes</VariableType>
-                  <Address>"UnityPlayer.dll"+01BE9D00</Address>
-                  <Offsets>
-                    <Offset>1F4</Offset>
-                    <Offset>B0</Offset>
-                    <Offset>1B8</Offset>
-                    <Offset>198</Offset>
-                    <Offset>1A8</Offset>
-                  </Offsets>
-                </CheatEntry>
-              </CheatEntries>
-            </CheatEntry>
-          </CheatEntries>
-        </CheatEntry>
-        <CheatEntry>
-          <ID>349113</ID>
-          <Description>"Scripts_FriendsLobbySollo"</Description>
-          <Options moHideChildren="1" moManualExpandCollapse="1" moDeactivateChildrenAsWell="1"/>
-          <Color>005AFF</Color>
-          <GroupHeader>1</GroupHeader>
-          <CheatEntries>
-            <CheatEntry>
-              <ID>349127</ID>
-              <Description>"Set quota input (Read desc inside for optimal use)"</Description>
-              <Options moHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
-              <VariableType>Auto Assembler Script</VariableType>
-              <AssemblerScript>{ Game   : Lethal Company.exe
-  Date   : 2023-11-28
-  Author : Chr0nicxHack3r
-
-  How to use:
-      1. Activate the script when the doors on the ship open
-      while landing on Gordion
-      2. Set the value on the address now shown with script
-      activation
-      3. Turn in items, after tentical pulls in the amount
-      will be updated
-      4. Deactivate before leaving Gordion or it will set the
-      amount after receiving quota met message
-}
-[ENABLE]
-aobscan(profQuota3,48 63 86 2C 01 00 00)
-alloc(newmem,$1000,profQuota3)
-alloc(quotaInput,4)
-label(code,return)
-quotaInput:
-  dd (int)0
-newmem:
-  mov rbx,[quotaInput]
-  mov dword ptr [rsi+0000012C],rbx
-  mov rbx,#0
-code:
-  movsxd  rax,dword ptr [rsi+0000012C]
-  jmp return
-profQuota3:
-  jmp newmem
-  nop 2
-return:
-registersymbol(profQuota3,quotaInput)
-[DISABLE]
-profQuota3:
-  db 48 63 86 2C 01 00 00
-unregistersymbol(*)
-dealloc(*)
-</AssemblerScript>
-              <CheatEntries>
-                <CheatEntry>
-                  <ID>349128</ID>
-                  <Description>"quotaInput Value"</Description>
-                  <ShowAsSigned>0</ShowAsSigned>
-                  <VariableType>4 Bytes</VariableType>
-                  <Address>quotaInput</Address>
-                </CheatEntry>
-              </CheatEntries>
-            </CheatEntry>
-          </CheatEntries>
-        </CheatEntry>
-        <CheatEntry>
           <ID>349168</ID>
           <Description>"GetLocalPlayer_ReadDesc"</Description>
           <Options moHideChildren="1" moManualExpandCollapse="1" moDeactivateChildrenAsWell="1"/>
@@ -490,7 +84,7 @@ dealloc(*)
       everyone!
 }
 [ENABLE]
-aobscan(GetAddress,48 8B 06 48 8B 00 0F B7 48 18 48 83 F9 07 0F 82 E1)
+aobscan(GetAddress,48 8B 06 48 8B 00 0F B7 48 18 48 83 F9 07 0F 82 38) // should be unique
 alloc(newmem,$1000,GetAddress)
 alloc(LocalPlayer,4)
 label(code,return)
@@ -512,6 +106,33 @@ GetAddress:
   db 48 8B 06 48 8B 00
 unregistersymbol(*)
 dealloc(*)
+{
+// ORIGINAL CODE - INJECTION POINT: 1B4C9D1F28E
+
+1B4C9D1F26E: 48 83 C0 08                    - add rax,08
+1B4C9D1F272: 48 8B D0                       - mov rdx,rax
+1B4C9D1F275: 48 63 08                       - movsxd  rcx,dword ptr [rax]
+1B4C9D1F278: 41 03 CC                       - add ecx,r12d
+1B4C9D1F27B: 89 08                          - mov [rax],ecx
+1B4C9D1F27D: 33 C0                          - xor eax,eax
+1B4C9D1F27F: 44 8B F8                       - mov r15d,eax
+1B4C9D1F282: C7 46 50 01 00 00 00           - mov [rsi+50],00000001
+1B4C9D1F289: 48 85 F6                       - test rsi,rsi
+1B4C9D1F28C: 74 2F                          - je 1B4C9D1F2BD
+// ---------- INJECTING HERE ----------
+1B4C9D1F28E: 48 8B 06                       - mov rax,[rsi]
+// ---------- DONE INJECTING  ----------
+1B4C9D1F291: 48 8B 00                       - mov rax,[rax]
+1B4C9D1F294: 0F B7 48 18                    - movzx ecx,word ptr [rax+18]
+1B4C9D1F298: 48 83 F9 07                    - cmp rcx,07
+1B4C9D1F29C: 0F 82 E1 01 00 00              - jb 1B4C9D1F483
+1B4C9D1F2A2: 48 8B 40 10                    - mov rax,[rax+10]
+1B4C9D1F2A6: 48 8B 40 30                    - mov rax,[rax+30]
+1B4C9D1F2AA: 48 B9 D8 8C D0 E1 B3 01 00 00  - mov rcx,000001B3E1D08CD8
+1B4C9D1F2B4: 48 3B C1                       - cmp rax,rcx
+1B4C9D1F2B7: 0F 85 AE 01 00 00              - jne 1B4C9D1F46B
+1B4C9D1F2BD: 48 63 85 68 FF FF FF           - movsxd  rax,dword ptr [rbp-00000098]
+}
 </AssemblerScript>
           <CheatEntries>
             <CheatEntry>
@@ -692,6 +313,96 @@ dealloc(*)
                     <Offset>198</Offset>
                     <Offset>1A8</Offset>
                   </Offsets>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>349113</ID>
+          <Description>"Scripts_FriendsLobbySollo"</Description>
+          <Options moHideChildren="1" moManualExpandCollapse="1" moDeactivateChildrenAsWell="1"/>
+          <Color>005AFF</Color>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>349127</ID>
+              <Description>"Set quota input (Read desc inside for optimal use)"</Description>
+              <Options moHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : Lethal Company.exe
+  Date   : 2023-11-28
+  Author : Chr0nicxHack3r
+
+  How to use:
+      1. Activate the script when the doors on the ship open
+      while landing on Gordion
+      2. Set the value on the address now shown with script
+      activation
+      3. Turn in items, after tentical pulls in the amount
+      will be updated
+      4. Deactivate before leaving Gordion or it will set the
+      amount after receiving quota met message
+}
+[ENABLE]
+aobscan(profQuota3,48 63 86 2C 01 00 00) // should be unique
+alloc(newmem,$1000,profQuota3)
+alloc(quotaInput,4)
+label(code,return)
+quotaInput:
+  dd (int)0
+newmem:
+  mov rbx,[quotaInput]
+  mov dword ptr [rsi+0000012C],rbx
+  mov rbx,#0
+code:
+  movsxd  rax,dword ptr [rsi+0000012C]
+  jmp return
+profQuota3:
+  jmp newmem
+  nop 2
+return:
+registersymbol(profQuota3,quotaInput)
+[DISABLE]
+profQuota3:
+  db 48 63 86 2C 01 00 00
+unregistersymbol(*)
+dealloc(*)
+{
+// ORIGINAL CODE - INJECTION POINT: TimeOfDay:UpdateProfitQuotaCurrentTime+196
+
+TimeOfDay:UpdateProfitQuotaCurrentTime+168: 41 FF D3                       - call r11
+TimeOfDay:UpdateProfitQuotaCurrentTime+16b: 48 8B D0                       - mov rdx,rax
+TimeOfDay:UpdateProfitQuotaCurrentTime+16e: 48 8B 45 A8                    - mov rax,[rbp-58]
+TimeOfDay:UpdateProfitQuotaCurrentTime+172: 48 8B C8                       - mov rcx,rax
+TimeOfDay:UpdateProfitQuotaCurrentTime+175: 48 8B 00                       - mov rax,[rax]
+TimeOfDay:UpdateProfitQuotaCurrentTime+178: FF 90 60 04 00 00              - call qword ptr [rax+00000460]
+TimeOfDay:UpdateProfitQuotaCurrentTime+17e: 48 B8 20 7F 5E 9D 13 02 00 00  - mov rax,000002139D5E7F20
+TimeOfDay:UpdateProfitQuotaCurrentTime+188: 48 8B 00                       - mov rax,[rax]
+TimeOfDay:UpdateProfitQuotaCurrentTime+18b: 48 8B 80 10 03 00 00           - mov rax,[rax+00000310]
+TimeOfDay:UpdateProfitQuotaCurrentTime+192: 48 89 45 A8                    - mov [rbp-58],rax
+// ---------- INJECTING HERE ----------
+TimeOfDay:UpdateProfitQuotaCurrentTime+196: 48 63 86 2C 01 00 00           - movsxd  rax,dword ptr [rsi+0000012C]
+// ---------- DONE INJECTING  ----------
+TimeOfDay:UpdateProfitQuotaCurrentTime+19d: 48 89 45 90                    - mov [rbp-70],rax
+TimeOfDay:UpdateProfitQuotaCurrentTime+1a1: 48 B9 38 17 3D E5 12 02 00 00  - mov rcx,00000212E53D1738
+TimeOfDay:UpdateProfitQuotaCurrentTime+1ab: 66 66 90                       - nop 3
+TimeOfDay:UpdateProfitQuotaCurrentTime+1ae: 49 BB 80 10 05 9F 11 02 00 00  - mov r11,System.Object:__icall_wrapper_ves_icall_object_new_specific
+TimeOfDay:UpdateProfitQuotaCurrentTime+1b8: 41 FF D3                       - call r11
+TimeOfDay:UpdateProfitQuotaCurrentTime+1bb: 48 8B 4D 90                    - mov rcx,[rbp-70]
+TimeOfDay:UpdateProfitQuotaCurrentTime+1bf: 89 48 10                       - mov [rax+10],ecx
+TimeOfDay:UpdateProfitQuotaCurrentTime+1c2: 48 89 45 98                    - mov [rbp-68],rax
+TimeOfDay:UpdateProfitQuotaCurrentTime+1c6: 48 63 86 28 01 00 00           - movsxd  rax,dword ptr [rsi+00000128]
+TimeOfDay:UpdateProfitQuotaCurrentTime+1cd: 48 89 45 A0                    - mov [rbp-60],rax
+}
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>349128</ID>
+                  <Description>"quotaInput Value"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>quotaInput</Address>
                 </CheatEntry>
               </CheatEntries>
             </CheatEntry>
