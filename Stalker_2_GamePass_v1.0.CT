@@ -1,0 +1,885 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>95647</ID>
+      <Description>"Activation"</Description>
+      <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+      <Color>0000FF</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{$LUA}
+AddressList.OnAutoAssemblerEdit = nil
+if syntaxcheck then return end
+memrec.Color = 0x0000FF00
+[ENABLE]
+local red = 0x0000FF
+local black = 0x000000
+local orange = 0x005AFF
+if (getCEVersion() ~= 7.5) then
+   showMessage("This table is for Cheat Engine 7.5. Please update to proceed.")
+   local str,Address
+   str=inputQuery('Cheat Engine Download (Click "Cancel" to decline)', 'Link', 'https://www.cheatengine.org/downloads.php')
+   if str and str~='' then
+      ShellExecute(str,Address)
+   end
+end
+
+function SetCheatCatColor()
+   AddressList.Pointers.Color=orange
+   AddressList.Scripts.Color=orange
+end
+
+local pl = getProcessList()
+local gameName = "S.T.A.L.K.E.R. 2: Heart of Chornobyl"
+local gameProc = 'Stalker2-WinGDK-Shipping.exe'
+if pl[getProcessIDFromProcessName(gameProc)] ~= nil then
+   if (readInteger(process) == nil) or (readInteger(process) ~= readInteger(gameProc)) then
+      openProcess(gameProc)
+   end
+GetAddressList().DevInfo.Color=0x00FFFF
+AddressList.GetAddresses.Active = true
+SetCheatCatColor()
+else
+    memrec.Color = 0x000000FF
+    local msg = [[
+               Game was not found
+Please run the game, then activate cheats
+    ]]
+     mShowMessage('Game Not Running', msg, true, 0)
+     Script.Active = false
+     return
+end
+
+if messageDialog("Change background to black?", mtConfirmation, mbYes, mbNo) ==mrYes then
+   getMainForm().color=black
+   getMainForm().Foundlist3.Color=black
+   GetAddressList().Control[0].BackgroundColor=black
+   AddressList.CheckboxColor=red
+end
+
+local msg = [[
+            Table made by Chr0nicxHack3r
+Please enjoy the content this table has to offer
+]]
+mShowMessage('Enjoy The Table', msg, true, 0)
+
+[DISABLE]
+memrec.Color = 0x000000FF
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>349118</ID>
+          <Description>"GetAddresses"</Description>
+          <Options moHideChildren="1" moManualExpandCollapse="1" moDeactivateChildrenAsWell="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(GetAddress,Stalker2-WinGDK-Shipping.exe,48 8B 10 4C 8D 85 A0 02 00 00) // should be unique
+alloc(newmem,$1000,GetAddress)
+alloc(LocalPlayer,8)
+label(code,return)
+LocalPlayer:
+  dq 0
+newmem:
+  mov [LocalPlayer],rax
+code:
+  mov rdx,[rax]
+  lea r8,[rbp+000002A0]
+  jmp return
+GetAddress:
+  jmp newmem
+  nop 5
+return:
+registersymbol(GetAddress,LocalPlayer)
+[DISABLE]
+GetAddress:
+  db 48 8B 10 4C 8D 85 A0 02 00 00
+unregistersymbol(*)
+dealloc(*)
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>349119</ID>
+              <Description>"LocalPlayer"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <GroupHeader>1</GroupHeader>
+              <Address>LocalPlayer</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>349112</ID>
+          <Description>"Pointers"</Description>
+          <Options moHideChildren="1" moManualExpandCollapse="1" moDeactivateChildrenAsWell="1"/>
+          <Color>005AFF</Color>
+          <GroupHeader>1</GroupHeader>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>349113</ID>
+          <Description>"Scripts"</Description>
+          <Options moHideChildren="1" moManualExpandCollapse="1" moDeactivateChildrenAsWell="1"/>
+          <Color>005AFF</Color>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>349149</ID>
+              <Description>"No_Bleeding"</Description>
+              <Options moAlwaysHideChildren="1" moManualExpandCollapse="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+              <Color>0000FF</Color>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : Stalker2-WinGDK-Shipping.exe
+  Date   : 2024-11-29
+  Author : Chr0nicxHack3r
+
+  Setting the value to 0 enables no bleeding. The higher the value, the more bleeding.
+}
+[ENABLE]
+{$LUA}
+memrec.Color = 0x0000FF00
+{$ASM}
+aobscanmodule(noBleeding,Stalker2-WinGDK-Shipping.exe,F3 0F 10 81 58 01 00 00 48) // should be unique
+alloc(newmem,$1000,noBleeding)
+alloc(bleedInput,8)
+label(code,return)
+bleedInput:
+  dd (float)-1
+newmem:
+  movss xmm0,[bleedInput]
+  movss [rcx+158],xmm0
+code:
+  movss xmm0,[rcx+00000158]
+  jmp return
+noBleeding:
+  jmp newmem
+  nop 3
+return:
+registersymbol(noBleeding,bleedInput)
+[DISABLE]
+{$LUA}
+memrec.Color = 0x000000FF
+{$ASM}
+noBleeding:
+  db F3 0F 10 81 58 01 00 00
+unregistersymbol(*)
+dealloc(*)
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>349150</ID>
+                  <Description>"Bleed_Input"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>8080FF</Color>
+                  <VariableType>Float</VariableType>
+                  <Address>bleedInput</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>349144</ID>
+              <Description>"No_Hunger"</Description>
+              <Options moAlwaysHideChildren="1" moManualExpandCollapse="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+              <Color>0000FF</Color>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : Stalker2-WinGDK-Shipping.exe
+  Date   : 2024-11-29
+  Author : Chr0nicxHack3r
+
+  Setting the value to 0 enables no hunger. The higher the value, the more hungry.
+}
+[ENABLE]
+{$LUA}
+memrec.Color = 0x0000FF00
+{$ASM}
+aobscanmodule(noHunger,Stalker2-WinGDK-Shipping.exe,F3 0F 10 81 7C 01 00 00 48 83) // should be unique
+alloc(newmem,$1000,noHunger)
+alloc(hungerInput,8)
+label(code,return)
+hungerInput:
+  dd (float)-1
+newmem:
+  movss xmm0,[hungerInput]
+  movss [rcx+17C],xmm0
+code:
+  movss xmm0,[rcx+0000017C]
+  jmp return
+noHunger:
+  jmp newmem
+  nop 3
+return:
+registersymbol(noHunger,hungerInput)
+[DISABLE]
+{$LUA}
+memrec.Color = 0x000000FF
+{$ASM}
+noHunger:
+  db F3 0F 10 81 7C 01 00 00
+unregistersymbol(*)
+dealloc(*)
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>349145</ID>
+                  <Description>"Hunger_Input"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>8080FF</Color>
+                  <VariableType>Float</VariableType>
+                  <Address>hungerInput</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>349151</ID>
+              <Description>"No_Radiation"</Description>
+              <Options moAlwaysHideChildren="1" moManualExpandCollapse="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+              <Color>0000FF</Color>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : Stalker2-WinGDK-Shipping.exe
+  Date   : 2024-11-29
+  Author : Chr0nicxHack3r
+
+  Setting the value to 0 enables no radiation. The higher the value, the more radiation.
+}
+[ENABLE]
+{$LUA}
+memrec.Color = 0x0000FF00
+{$ASM}
+aobscanmodule(noRad,Stalker2-WinGDK-Shipping.exe,F3 0F 10 81 6C 01 00 00 48 83 C4 70) // should be unique
+alloc(newmem,$1000,noRad)
+alloc(radInput,8)
+label(code,return)
+radInput:
+  dd (float)-5000
+newmem:
+  movss xmm0,[radInput]
+  movss [rcx+16C],xmm0
+code:
+  movss xmm0,[rcx+0000016C]
+  jmp return
+noRad:
+  jmp newmem
+  nop 3
+return:
+registersymbol(noRad,radInput)
+[DISABLE]
+{$LUA}
+memrec.Color = 0x000000FF
+{$ASM}
+noRad:
+  db F3 0F 10 81 6C 01 00 00
+unregistersymbol(*)
+dealloc(*)
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>349152</ID>
+                  <Description>"Radiation_Input"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>8080FF</Color>
+                  <VariableType>Float</VariableType>
+                  <Address>radInput</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>349147</ID>
+              <Description>"Not_Tired"</Description>
+              <Options moAlwaysHideChildren="1" moManualExpandCollapse="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+              <Color>0000FF</Color>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : Stalker2-WinGDK-Shipping.exe
+  Date   : 2024-11-29
+  Author : Chr0nicxHack3r
+
+  Setting the value to 0 enables not tired. The higher the value, the more tired.
+}
+[ENABLE]
+{$LUA}
+memrec.Color = 0x0000FF00
+{$ASM}
+aobscanmodule(notTired,Stalker2-WinGDK-Shipping.exe,F3 0F 10 81 84 01 00 00 48 83) // should be unique
+alloc(newmem,$1000,notTired)
+alloc(sleepInput,8)
+label(code,return)
+sleepInput:
+  dd (float)-1
+newmem:
+  movss xmm0,[sleepInput]
+  movss [rcx+184],xmm0
+code:
+  movss xmm0,[rcx+00000184]
+  jmp return
+notTired:
+  jmp newmem
+  nop 3
+return:
+registersymbol(notTired,sleepInput)
+[DISABLE]
+{$LUA}
+memrec.Color = 0x000000FF
+{$ASM}
+notTired:
+  db F3 0F 10 81 84 01 00 00
+unregistersymbol(*)
+dealloc(*)
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>349148</ID>
+                  <Description>"Sleep_Input"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>8080FF</Color>
+                  <VariableType>Float</VariableType>
+                  <Address>sleepInput</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>349156</ID>
+              <Description>"Unlimited_Health"</Description>
+              <Options moAlwaysHideChildren="1" moManualExpandCollapse="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+              <Color>0000FF</Color>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : Stalker2-WinGDK-Shipping.exe
+  Date   : 2024-11-29
+  Author : Chr0nicxHack3r
+
+  This script sets the health value
+}
+[ENABLE]
+{$LUA}
+memrec.Color = 0x0000FF00
+{$ASM}
+aobscanmodule(unlimitedHealth,Stalker2-WinGDK-Shipping.exe,F3 0F 10 81 48 01 00 00 48) // should be unique
+alloc(newmem,$1000,unlimitedHealth)
+alloc(healthInput,8)
+label(code,return)
+healthInput:
+  dd (float)5000
+newmem:
+  movss xmm0,[healthInput]
+  movss [rcx+148],xmm0
+code:
+  movss xmm0,[rcx+00000148]
+  jmp return
+unlimitedHealth:
+  jmp newmem
+  nop 3
+return:
+registersymbol(unlimitedHealth,healthInput)
+[DISABLE]
+{$LUA}
+memrec.Color = 0x000000FF
+{$ASM}
+unlimitedHealth:
+  db F3 0F 10 81 48 01 00 00
+unregistersymbol(*)
+dealloc(*)
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>349157</ID>
+                  <Description>"Health_Input"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>8080FF</Color>
+                  <VariableType>Float</VariableType>
+                  <Address>healthInput</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>349142</ID>
+              <Description>"Unlimited_Stamina"</Description>
+              <Options moAlwaysHideChildren="1" moManualExpandCollapse="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+              <Color>0000FF</Color>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : Stalker2-WinGDK-Shipping.exe
+  Date   : 2024-11-29
+  Author : Chr0nicxHack3r
+
+  This script sets the stamina value
+}
+[ENABLE]
+{$LUA}
+memrec.Color = 0x0000FF00
+{$ASM}
+aobscanmodule(maxStamina,Stalker2-WinGDK-Shipping.exe,F3 0F 10 81 50 01 00 00 48 83) // should be unique
+alloc(newmem,$1000,maxStamina)
+alloc(stamInput,8)
+label(code,return)
+stamInput:
+  dd (float)250
+newmem:
+  movss xmm0,[stamInput]
+  movss [rcx+150],xmm0
+code:
+  movss xmm0,[rcx+150]
+  jmp return
+maxStamina:
+  jmp newmem
+  nop 3
+return:
+registersymbol(maxStamina,stamInput)
+[DISABLE]
+{$LUA}
+memrec.Color = 0x000000FF
+{$ASM}
+maxStamina:
+  db F3 0F 10 81 50 01 00 00
+unregistersymbol(*)
+dealloc(*)
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>349143</ID>
+                  <Description>"Stamina_Input"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>8080FF</Color>
+                  <VariableType>Float</VariableType>
+                  <Address>stamInput</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>349130</ID>
+              <Description>"Unlimited_Ammo"</Description>
+              <Options moAlwaysHideChildren="1" moManualExpandCollapse="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+              <Color>0000FF</Color>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : Stalker2-WinGDK-Shipping.exe
+  Date   : 2024-11-21
+  Author : Chr0nicxHack3r
+
+  Change mag size to below value after shooting.
+}
+[ENABLE]
+{$LUA}
+memrec.Color = 0x0000FF00
+{$ASM}
+aobscanmodule(unlimitedAmmo,Stalker2-WinGDK-Shipping.exe,89 91 9C 02 00 00 C3) // should be unique
+alloc(newmem,$1000,unlimitedAmmo)
+alloc(ammoInput,8)
+label(code,return)
+ammoInput:
+  dd #50
+newmem:
+  mov edx,[ammoInput]
+code:
+  mov [rcx+0000029C],edx
+  jmp return
+unlimitedAmmo:
+  jmp newmem
+  nop
+return:
+registersymbol(unlimitedAmmo,ammoInput)
+[DISABLE]
+{$LUA}
+memrec.Color = 0x000000FF
+{$ASM}
+unlimitedAmmo:
+  db 89 91 9C 02 00 00
+unregistersymbol(*)
+dealloc(*)
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>349153</ID>
+                  <Description>"Ammo_Input"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>8080FF</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>ammoInput</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>349135</ID>
+              <Description>"Unlimited_Weight"</Description>
+              <Options moAlwaysHideChildren="1" moManualExpandCollapse="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+              <Color>0000FF</Color>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : Stalker2-WinGDK-Shipping.exe
+  Date   : 2024-11-21
+  Author : Chr0nicxHack3r
+
+  This script will set weight to value below
+}
+[ENABLE]
+{$LUA}
+memrec.Color = 0x0000FF00
+{$ASM}
+aobscanmodule(unlimitedWeight,Stalker2-WinGDK-Shipping.exe,F3 0F 10 83 2C 01 00 00 C6) // should be unique
+alloc(newmem,$1000,unlimitedWeight)
+alloc(weightInput,8)
+label(code,return)
+weightInput:
+  dd (float)0
+newmem:
+  movss xmm0,[weightInput]
+  movss [rbx+12C],xmm0
+code:
+  movss xmm0,[rbx+0000012C]
+  jmp return
+unlimitedWeight:
+  jmp newmem
+  nop 3
+return:
+registersymbol(unlimitedWeight,weightInput)
+[DISABLE]
+{$LUA}
+memrec.Color = 0x000000FF
+{$ASM}
+unlimitedWeight:
+  db F3 0F 10 83 2C 01 00 00
+unregistersymbol(*)
+dealloc(*)
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>349154</ID>
+                  <Description>"Weight_Input"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>8080FF</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>weightInput</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>349140</ID>
+              <Description>"Unlimited_Inventory"</Description>
+              <Options moAlwaysHideChildren="1" moManualExpandCollapse="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+              <Color>0000FF</Color>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : Stalker2-WinGDK-Shipping.exe
+  Date   : 2024-11-28
+  Author : Chr0nicxHack3r
+
+  This script will set amount of item in inventory when used
+}
+[ENABLE]
+{$LUA}
+memrec.Color = 0x0000FF00
+{$ASM}
+aobscanmodule(unlimitedInventory,Stalker2-WinGDK-Shipping.exe,8B 43 40 66 0F 6E C0) // should be unique
+alloc(newmem,$1000,unlimitedInventory)
+alloc(invInput,8)
+label(code,return)
+invInput:
+  dd #5
+newmem:
+  movss xmm0,[invInput]
+  movss [rbx+40],xmm0
+code:
+  mov eax,[rbx+40]
+  movd xmm0,eax
+  jmp return
+unlimitedInventory:
+  jmp newmem
+  nop 2
+return:
+registersymbol(unlimitedInventory,invInput)
+[DISABLE]
+{$LUA}
+memrec.Color = 0x000000FF
+{$ASM}
+unlimitedInventory:
+  db 8B 43 40 66 0F 6E C0
+unregistersymbol(*)
+dealloc(*)
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>349155</ID>
+                  <Description>"Inventory_Input"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>8080FF</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>invInput</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>95646</ID>
+      <Description>"Terminate Cheats"</Description>
+      <Color>0000FF</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+{$LUA}
+if syntaxcheck then return end
+local al = getAddressList()
+for i = 0, al.Count - 1 do
+  if al[i].Type == vtAutoAssembler then al[i].Active = false end
+end
+local msg = [[
+Cheats have been deactiavted,
+     Hope you had a fun time!
+]]
+mShowMessage('Cheats Deactivated', msg, true, 0)
+memrec.Color = 0x000000FF
+{$ASM}
+nop
+[DISABLE]
+
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>95649</ID>
+      <Description>"DevInfo"</Description>
+      <Options moHideChildren="1"/>
+      <Color>00FFFF</Color>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>349117</ID>
+          <Description>"Game Information"</Description>
+          <Color>FFFF00</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$LUA}
+if syntaxcheck then return end
+[ENABLE]
+local msg = [[
+Game:                     S.T.A.L.K.E.R. 2: Heart of Chornobyl
+
+Version:                  1.6.420.0
+
+Platform:                 Windows Edition]]
+mShowMessage('Game Information', msg, true, 0)
+memrec.Color = 0x00FFFF00
+{$ASM}
+nop
+[DISABLE]
+
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>349115</ID>
+          <Description>"Table Information"</Description>
+          <Color>FFFF00</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$LUA}
+if syntaxcheck then return end
+[ENABLE]
+local msg = [[
+Table Creator:       Chr0nicxHack3r
+
+Table Version:       1.0
+
+Cheat Engine:         7.5
+
+Blackout Mode:      True]]
+mShowMessage('Table Information', msg, true, 0)
+memrec.Color = 0x00FFFF00
+{$ASM}
+nop
+[DISABLE]
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>349116</ID>
+          <Description>"-----------------------------"</Description>
+          <Color>00FFFF</Color>
+          <GroupHeader>1</GroupHeader>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>349109</ID>
+          <Description>"Donate (PayPal)"</Description>
+          <Color>FFFF00</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$LUA}
+[ENABLE]
+local str,Address
+str=inputQuery('Donate to PayPal', 'Link', 'https://www.paypal.com/donate/?hosted_button_id=5XDWJEFK2W7MW')
+if str and str~='' then
+  ShellExecute(str,Address)
+end
+memrec.Color = 0x00FFFF00
+{$ASM}
+nop
+[DISABLE]
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <Comments>
+</Comments>
+  <LuaScript>--{
+--This must be executed
+--for the table to work!
+--}
+
+local t = translate
+
+MainForm.Title = 'Chr0nicxHack3r Cheat Table'
+
+CompactModeEnabled = false
+
+function disableHeaderSorting()
+   local addressListHeader = component_getComponent(AddressList, 1)
+   setMethodProperty(addressListHeader, 'OnSectionClick', nil)
+end
+
+function disableCompactMode()
+   control_setVisible(wincontrol_getControl(MainForm, 0), true)
+   control_setVisible(wincontrol_getControl(MainForm, 3), true)
+   CompactModeEnabled = false
+end
+
+function enableCompactMode()
+   control_setVisible(wincontrol_getControl(MainForm, 0), false)
+   control_setVisible(wincontrol_getControl(MainForm, 3), false)
+   CompactModeEnabled = true
+end
+
+function toggleCompactMode()
+   if CompactModeEnabled then
+      disableCompactMode()
+   else
+      enableCompactMode()
+   end
+end
+
+function addCompactModeMenu()
+   local name = 'miCTCompactMode'
+   local miCompactMode = nil
+   for i = 1, MainForm.Menu.Items.Count - 1 do
+      if MainForm.Menu.Items[i].Name == name then
+         miCompactMode = MainForm.Menu.Items[i]
+         break
+      end
+   end
+   if miCompactMode == nil then
+      miCompactMode = createMenuItem(MainForm.Menu.Items)
+      miCompactMode.Name = name
+      miCompactMode.Caption = t('Compact Mode')
+      miCompactMode.OnClick = toggleCompactMode
+      MainForm.Menu.Items.add(miCompactMode)
+   end
+end
+
+addCompactModeMenu()
+
+AddressList.OnAutoAssemblerEdit = nil
+
+function openLink(link)
+  if type(link) == "string" and link ~= nil then
+     return shellExecute(link)
+  else
+     return nil
+  end
+end
+
+function mShowMessage(title, texttoshow, withbutton, link)
+ local myform = createForm(false)
+ myform.Caption = title
+ myform.autosize = true
+ myform.BorderStyle = 'bsDialog'
+ myform.Position = 'poScreenCenter'
+ myform.Color = 0x000000
+
+ local font = createFont(myform)
+ font.Name = 'Comic Sans MS'
+ font.Height = -15
+ font.Size = 15
+ font.CharSet = 'ANSI_CHARSET'
+ font.pitch = 'fpFixed'
+ font.Quality = 'fqCleartype'
+ font.Color = 0x8C008C
+
+ local mylabel = createLabel(myform)
+ mylabel.Caption = texttoshow
+ mylabel.OptimalFill = true
+ mylabel.font = font
+ mylabel.Align = 'alClient'
+ mylabel.left = (myform.width - mylabel.width) / 2
+ mylabel.BorderSpacing.Around = 25
+
+
+ if withbutton then
+   local mybtn = createButton(myform)
+   mybtn.height = 30
+   mybtn.left = (myform.width - mybtn.width) / 2
+   mybtn.top = myform.height - mybtn.height
+   mybtn.Align = 'alBottom'
+   mybtn.BorderSpacing.Around = 25
+   mybtn.Caption = 'Okay'
+   mybtn.OnClick = function()
+   if link == nil or link == '' then
+      myform.hide()
+      return
+   else
+       openLink(link)
+       myform.hide()
+   end
+   end
+ end
+ myform.show()
+end
+
+FunctionArray={};
+registerLuaFunctionHighlight("FunctionArray");
+
+FunctionNamesArray={};
+registerLuaFunctionHighlight("FunctionNamesArray");
+
+function AddToFunctionLoop(name,func)
+FunctionNamesArray[#FunctionNamesArray+1]=name;
+FunctionArray[#FunctionArray+1]=func;
+end
+registerLuaFunctionHighlight("AddToFunctionLoop");
+
+function RemoveFromFunctionLoop(name)
+local INDEX=-1;
+for ind=0,#FunctionNamesArray,1 do
+if FunctionNamesArray[ind]~=nil then
+if FunctionNamesArray[ind]==name then
+INDEX=ind;
+break;
+end
+end
+end
+if INDEX~=-1 then
+FunctionArray[INDEX]=nil;
+FunctionNamesArray[INDEX]=nil;
+end
+end
+registerLuaFunctionHighlight("RemoveFromFunctionLoop");
+
+function CreateFunctionLoop()
+if FunctionLoop~=nil then
+FunctionLoop.suspend();
+FunctionLoop.terminate();
+FunctionLoop=nil;
+end
+FunctionLoop=createThread(function()
+while (1) do
+if #FunctionArray&gt;0 then
+for ind=0,#FunctionArray,1 do
+if  FunctionArray[ind]~=nil then
+ FunctionArray[ind]();
+ end
+end
+end
+sleep(FunctionLoopSpeed);
+end
+end);
+FunctionLoop.Name="Main_FunctionLoop";
+end
+registerLuaFunctionHighlight("CreateFunctionLoop");
+registerLuaFunctionHighlight("FunctionLoop");
+
+FunctionLoopSpeed=50;
+registerLuaFunctionHighlight("FunctionLoopSpeed");
+
+CreateFunctionLoop();
+</LuaScript>
+</CheatTable>
